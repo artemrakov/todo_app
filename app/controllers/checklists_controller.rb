@@ -26,6 +26,15 @@ class ChecklistsController < ApplicationController
     end
   end
 
+  def destroy
+    @checklist = Checklist.find(params[:id])
+    if @checklist.destroy
+      redirect_to checklists_path, notice: 'Successfully deleted!'
+    else
+      redirect_to checklist_path(@checklist), alert: 'Something went wrong'
+    end
+  end
+
 
   private
 

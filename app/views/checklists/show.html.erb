@@ -1,11 +1,16 @@
 <div class="container">
   <h1>Checklist</h1>
-  <h2 id='checklist_field'> Name: <%= @checklist.title %> <a data-toggle="modal" data-target="#edit_checklist" href="#"> Edit </a> </h2>
+  <h2 id='checklist_field'>
+    Name: <%= @checklist.title %>
+    <a data-toggle="modal" data-target="#edit_checklist" href="#"> Edit </a>
+    <%= link_to 'Delete', checklist_path(@checklist), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </h2>
   <ul>
     <% @checklist.items.each do |item| %>
       <li>
         <%= item.title %>
         <a data-toggle="modal" data-target="#item_<%= item.id %>" href="#"> Edit </a>
+        <%= link_to 'Delete', checklist_item_path(@checklist, item), method: :delete, data: { confirm: 'Are you sure?' }  %>
         <%= render 'item_modal', item: item, checklist: @checklist, id: "item_#{item.id}" %>
       </li>
     <% end %>
@@ -13,4 +18,4 @@
   <%= link_to 'New todo', checklist_items_path(@checklist), method: :post  %>
 </div>
 
-<%= render 'checklist_modal', checklist: @checklist, id: '#edit_checklist' %>
+<%= render 'checklist_modal', checklist: @checklist %>

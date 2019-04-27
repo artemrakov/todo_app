@@ -20,6 +20,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    checklist = Checklist.find(params[:checklist_id])
+    if item.destroy
+      redirect_to checklist_path(checklist), notice: 'Successfully deleted!'
+    else
+      redirect_to checklist_path(checklist), alert: 'Something went wrong'
+    end
+  end
+
 
   private
 
