@@ -1,0 +1,10 @@
+<h1>Checklists</h1>
+<ul>
+  <% @checklists.each do |checklist| %>
+    <li>
+      <%= checklist.title %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Creat Checklist', checklists_path, method: :post %>

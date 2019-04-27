@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Checklist</h1>
+  <h2> <%= @checklist.title %> </h2>
+  <ul>
+    <% @checklist.items.each do |item| %>
+    <li>
+      <%= item.title %>
+    </li>
+    <% end %>
+  </ul>
+</div>
