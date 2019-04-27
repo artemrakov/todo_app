@@ -11,9 +11,9 @@ class ChecklistsController < ApplicationController
   def create
     checklist = Checklist.new(user: current_user)
     if checklist.save
-      redirect_to checklist_path(checklist)
+      redirect_to checklist_path(checklist), notice: 'Successfully created!'
     else
-      redirect_to :index
+      redirect_to :index, alert: 'Something went wrong. Checklist can not be created'
     end
   end
 
