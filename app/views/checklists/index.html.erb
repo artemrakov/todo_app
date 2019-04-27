@@ -2,7 +2,7 @@
 <ul>
   <% @checklists.each do |checklist| %>
     <li>
-      <%= checklist.title %>
+      <%= link_to checklist.title, checklist_path(checklist) %>
     </li>
   <% end %>
 </ul>

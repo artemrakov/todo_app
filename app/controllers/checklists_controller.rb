@@ -17,4 +17,20 @@ class ChecklistsController < ApplicationController
     end
   end
 
+  def update
+    @checklist = Checklist.find(params[:id])
+    if @checklist.update(checklist_params)
+      redirect_to checklist_path(@checklist), notice: 'Successfully changed!'
+    else
+      redirect_to checklist_path(@checklist), alert: 'Something went wrong'
+    end
+  end
+
+
+  private
+
+  def checklist_params
+    params.require(:checklist).permit(:title)
+  end
+
 end
