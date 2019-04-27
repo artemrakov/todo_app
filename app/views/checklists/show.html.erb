@@ -8,6 +8,7 @@
   <ul>
     <% @checklist.items.each do |item| %>
       <li>
+        <%= render 'checkbox_for_item', item: item, checklist: @checklist %>
         <%= item.title %>
         <a data-toggle="modal" data-target="#item_<%= item.id %>" href="#"> Edit </a>
         <%= link_to 'Delete', checklist_item_path(@checklist, item), method: :delete, data: { confirm: 'Are you sure?' }  %>
