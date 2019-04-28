@@ -1,24 +1,23 @@
 class ChecklistsController < ApplicationController
+  before_action :find_checklist, only: %i[show update destroy]
 
   def index
     @checklists = Checklist.all
   end
 
   def show
-    @checklist = Checklist.find(params[:id])
   end
 
   def create
-    checklist = Checklist.new(user: current_user)
-    if checklist.save
-      redirect_to checklist_path(checklist), notice: 'Successfully created!'
+    @checklist = Checklist.new(user: current_user)
+    if @checklist.save
+      redirect_to checklist_path(@checklist), notice: 'Successfully created!'
     else
       redirect_to :index, alert: 'Something went wrong. Checklist can not be created'
     end
   end
 
   def update
-    @checklist = Checklist.find(params[:id])
     if @checklist.update(checklist_params)
       redirect_to checklist_path(@checklist), notice: 'Successfully changed!'
     else
@@ -27,7 +26,6 @@ class ChecklistsController < ApplicationController
   end
 
   def destroy
-    @checklist = Checklist.find(params[:id])
     if @checklist.destroy
       redirect_to checklists_path, notice: 'Successfully deleted!'
     else
@@ -35,11 +33,13 @@ class ChecklistsController < ApplicationController
     end
   end
 
-
   private
+
+  def find_checklist
+    @checklist = Checklist.find(params[:id])
+  end
 
   def checklist_params
     params.require(:checklist).permit(:title)
   end
-
 end

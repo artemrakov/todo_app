@@ -10,27 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_184932) do
+ActiveRecord::Schema.define(version: 2019_04_28_180759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "checklists", force: :cascade do |t|
+  create_table "checklist_templates", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "checklists", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "checklist_template_id"
+    t.index ["checklist_template_id"], name: "index_checklists_on_checklist_template_id"
     t.index ["user_id"], name: "index_checklists_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
+    t.boolean "done", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "checklist_id"
-    t.boolean "done", default: false
+    t.bigint "template_item_id"
     t.index ["checklist_id"], name: "index_items_on_checklist_id"
+    t.index ["template_item_id"], name: "index_items_on_template_item_id"
+  end
+
+  create_table "template_items", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "description", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,6 +60,8 @@ ActiveRecord::Schema.define(version: 2019_04_27_184932) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "checklists", "checklist_templates"
   add_foreign_key "checklists", "users"
   add_foreign_key "items", "checklists"
+  add_foreign_key "items", "template_items"
 end
