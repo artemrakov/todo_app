@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :find_checklist, only: %i[create update destroy]
-  before_action :find_item, only: %i[create update destroy]
+  before_action :find_item, only: %i[update destroy]
 
   def create
     @item = @checklist.items.build

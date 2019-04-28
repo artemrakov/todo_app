@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_180759) do
+ActiveRecord::Schema.define(version: 2019_04_28_181350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checklist_templates", force: :cascade do |t|
-    t.string "title"
+    t.string "title", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_04_28_180759) do
     t.string "description", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "checklist_template_id"
+    t.index ["checklist_template_id"], name: "index_template_items_on_checklist_template_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,4 +66,5 @@ ActiveRecord::Schema.define(version: 2019_04_28_180759) do
   add_foreign_key "checklists", "users"
   add_foreign_key "items", "checklists"
   add_foreign_key "items", "template_items"
+  add_foreign_key "template_items", "checklist_templates"
 end

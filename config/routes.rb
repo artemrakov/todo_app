@@ -4,4 +4,10 @@ Rails.application.routes.draw do
   resources :checklists, except: %i[new] do
     resources :items, only: %i[create update destroy]
   end
+  resources :checklist_templates do
+    resources :template_items, only: %i[create update destroy]
+    member do
+      post :create_checklist
+    end
+  end
 end
