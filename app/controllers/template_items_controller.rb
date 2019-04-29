@@ -5,25 +5,25 @@ class TemplateItemsController < ApplicationController
   def create
     @template_item = @checklist_template.template_items.build(template_item_params)
     if @template_item.save
-      redirect_to checklist_template_path(@checklist_template), notice: 'Successfully created!'
+      redirect_to checklist_template_path(@checklist_template), notice: t('template_item.success_create')
     else
-      redirect_to checklist_template_path(@checklist_template), alert: 'Something went wrong'
+      redirect_to checklist_template_path(@checklist_template), alert: t('template_item.fail_create')
     end
   end
 
   def update
     if @template_item.update(template_item_params)
-      redirect_to checklist_template_path(@checklist_template), notice: 'Successfully updated!'
+      redirect_to checklist_template_path(@checklist_template), notice: t('template_item.success_update')
     else
-      redirect_to checklist_template_path(@checklist_template), alert: 'Something went wrong'
+      redirect_to checklist_template_path(@checklist_template), alert: t('template_item.fail_update')
     end
   end
 
   def destroy
     if @template_item.destroy
-      redirect_to checklist_template_path(@checklist_template), notice: 'Successfully deleted!'
+      redirect_to checklist_template_path(@checklist_template), notice: t('template_item.success_destroy')
     else
-      redirect_to checklist_template_path(@checklist_template), alert: 'Something went wrong'
+      redirect_to checklist_template_path(@checklist_template), alert: t('template_item.fail_destroy')
     end
   end
 

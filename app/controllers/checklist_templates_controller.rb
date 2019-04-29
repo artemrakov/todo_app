@@ -12,9 +12,9 @@ class ChecklistTemplatesController < ApplicationController
   def create
     @checklist_template = ChecklistTemplate.new(checklist_template_params)
     if @checklist_template.save
-      redirect_to checklist_template_path(@checklist_template), notice: 'Successfully created!'
+      redirect_to checklist_template_path(@checklist_template), notice: t('checklist_template.success_create')
     else
-      redirect_to :index, alert: 'Something went wrong. Checklist template can not be created'
+      redirect_to :index, alert: t('checklist_template.fail_create')
     end
   end
 

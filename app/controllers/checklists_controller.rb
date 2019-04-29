@@ -11,25 +11,25 @@ class ChecklistsController < ApplicationController
   def create
     @checklist = Checklist.new(user: current_user)
     if @checklist.save
-      redirect_to checklist_path(@checklist), notice: 'Successfully created!'
+      redirect_to checklist_path(@checklist), notice: t('checklist.success_create')
     else
-      redirect_to :index, alert: 'Something went wrong. Checklist can not be created'
+      redirect_to :index, alert: t('checklist.fail_create')
     end
   end
 
   def update
     if @checklist.update(checklist_params)
-      redirect_to checklist_path(@checklist), notice: 'Successfully changed!'
+      redirect_to checklist_path(@checklist), notice: t('checklist.success_update')
     else
-      redirect_to checklist_path(@checklist), alert: 'Something went wrong'
+      redirect_to checklist_path(@checklist), alert: t('checklist.fail_update')
     end
   end
 
   def destroy
     if @checklist.destroy
-      redirect_to checklists_path, notice: 'Successfully deleted!'
+      redirect_to checklists_path, notice: t('checklist.success_destroy')
     else
-      redirect_to checklist_path(@checklist), alert: 'Something went wrong'
+      redirect_to checklist_path(@checklist), alert: t('checklist.fail_destroy')
     end
   end
 
