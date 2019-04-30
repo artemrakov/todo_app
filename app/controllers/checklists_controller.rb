@@ -9,7 +9,7 @@ class ChecklistsController < ApplicationController
   end
 
   def create
-    @checklist = Checklist.new(user: current_user)
+    @checklist = current_user.checklists.build
     if @checklist.save
       redirect_to checklist_path(@checklist), notice: 'Successfully created!'
     else
