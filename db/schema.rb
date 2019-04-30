@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 2019_04_28_181350) do
   enable_extension "plpgsql"
 
   create_table "checklist_templates", force: :cascade do |t|
-    t.string "title", default: "", null: false
+    t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "checklists", force: :cascade do |t|
-    t.string "title", default: "", null: false
+    t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_181350) do
 
   create_table "items", force: :cascade do |t|
     t.boolean "done", default: false, null: false
+    t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "checklist_id"
@@ -42,8 +43,8 @@ ActiveRecord::Schema.define(version: 2019_04_28_181350) do
   end
 
   create_table "template_items", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.string "description", default: "", null: false
+    t.string "title", null: false
+    t.string "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "checklist_template_id"
