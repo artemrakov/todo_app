@@ -1,12 +1,10 @@
 class ChecklistForm
   include ActiveModel::Model
 
-  attr_accessor(
-    :title,
-    :user,
-    :checklist_template,
-    :checklist
-  )
+  attr_accessor :title
+  attr_accessor :user
+  attr_accessor :checklist_template
+  attr_accessor :checklist
 
   def initialize(attributes)
     super(attributes)
