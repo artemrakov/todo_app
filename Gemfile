@@ -25,9 +25,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
-  gem 'guard-rspec', require: false
+  gem 'factory_bot_rails'
 end

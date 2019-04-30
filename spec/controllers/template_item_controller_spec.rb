@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe TemplateItemController, type: :controller do
+RSpec.describe TemplateItemsController, type: :controller do
 
 end
