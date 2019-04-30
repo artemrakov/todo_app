@@ -1,3 +1,4 @@
+# Item that only exist in checklist and based on template item
 class Item < ApplicationRecord
   belongs_to :checklist
   belongs_to :template_item

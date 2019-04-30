@@ -1,3 +1,4 @@
+# User's checklist based on checklist template
 class Checklist < ApplicationRecord
   has_many :items, dependent: :destroy
   belongs_to :user
