@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Checklist</h1>
+  <h2 id='checklist_field'>
+    Name: <%= @checklist.title %>
+    <a data-toggle="modal" data-target="#edit_checklist" href="#"> Edit </a>
+    <%= link_to 'Delete', checklist_path(@checklist), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </h2>
+  <ul>
+    <% @checklist.items.each do |item| %>
+      <li>
+        <%= render 'checkbox_for_item', item: item, checklist: @checklist %>
+        <%= item.title %>
+        <%= link_to 'Delete', checklist_item_path(@checklist, item), method: :delete, data: { confirm: 'Are you sure?' }  %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to 'New todo', checklist_items_path(@checklist), method: :post  %>
+</div>
+
+<%= render 'checklist_modal', checklist: @checklist %>
