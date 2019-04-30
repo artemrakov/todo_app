@@ -17,12 +17,12 @@ class ChecklistForm
     return false unless valid?
 
     create_items
-    checklist.save
+    checklist.save!
   end
 
   def create_items
     checklist_template.template_items.each do |template_item|
-      checklist.items.build(template_item: template_item)
+      checklist.items.build(template_item: template_item, title: template_item.title)
     end
   end
 end
