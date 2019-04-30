@@ -30,4 +30,45 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  edit_button: 'Edit'
+  delete_button: 'Delete'
+
+  paths:
+    new_item_path: 'New Item'
+    new_checklist_template_path: 'New ChecklistTemplate'
+    items_path: 'All Items'
+    new_checklist_path: 'New Checklist'
+
+  checklist:
+    index: 'All Checklists'
+    success_create: 'Checklist successfully created!'
+    fail_create: 'Failed to create checklist'
+    success_update: 'Checklist successfully updated!'
+    fail_update: 'Failed to update checklist'
+    success_destroy: 'Checklist successfully destroyed'
+    fail_destroy: 'Failed to destroy Checklist'
+
+  checklist_template:
+    index: 'All Templates'
+    success_create: 'Checklist template successfully created!'
+    fail_create: 'Failed to create checklist template'
+    success_update: 'Checklist template successfully updated!'
+    fail_update: 'Failed to update checklist template'
+    success_destroy: 'Checklist template successfully destroyed'
+    fail_destroy: 'Failed to destroy Checklist template'
+    title_show_label: 'Title'
+
+  item:
+    success_update: 'Item successfully updated!'
+    fail_update: 'Failed to update'
+    success_destroy: 'Item successfully destroyed'
+    success_create: 'Item successfully created!'
+    fail_create: "Couldn't create an Item"
+
+  template_item:
+    success_update: 'Template Item successfully updated!'
+    fail_update: 'Failed to update'
+    success_create: 'Template Item successfully created!'
+    fail_create: "Couldn't create an Template Item"
+    success_destroy: 'Template Item successfully destroyed'
+    fail_destroy: 'Failed to destroy Template Item'

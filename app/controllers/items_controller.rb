@@ -5,26 +5,26 @@ class ItemsController < ApplicationController
   def create
     @item = @checklist.items.build
     if @item.save
-      redirect_to checklist_path(@checklist), notice: 'Successfully created!'
+      redirect_to checklist_path(@checklist), notice: t('item.success_create')
     else
-      redirect_to checklist_path(@checklist), alert: 'Something went wrong'
+      redirect_to checklist_path(@checklist), alert: t('item.fail_create')
     end
   end
 
   def update
     if @item.update(item_params)
-      redirect_to checklist_path(@checklist), notice: 'Successfully updated!'
+      redirect_to checklist_path(@checklist), notice: t('item.success_update')
     else
-      redirect_to checklist_path(@checklist), alert: 'Something went wrong'
+      redirect_to checklist_path(@checklist), alert: t('item.fail_update')
     end
   end
 
   def destroy
     @item = Item.find(params[:id])
     if @item.destroy
-      redirect_to checklist_path(@checklist), notice: 'Successfully deleted!'
+      redirect_to checklist_path(@checklist), notice: t('item.success_destroy')
     else
-      redirect_to checklist_path(@checklist), alert: 'Something went wrong'
+      redirect_to checklist_path(@checklist), alert: t('item.fail_destroy')
     end
   end
 
