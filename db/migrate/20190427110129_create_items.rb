@@ -3,6 +3,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
     create_table :items do |t|
       t.boolean :done, default: false, null: false
       t.string :title, null: false
+
       t.timestamps
     end
   end

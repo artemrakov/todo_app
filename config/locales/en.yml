@@ -48,7 +48,6 @@ en:
     success_destroy: 'Checklist successfully destroyed'
     fail_destroy: 'Failed to destroy Checklist'
 
-
   checklist_template:
     index: 'All Templates'
     success_create: 'Checklist template successfully created!'
@@ -66,11 +65,10 @@ en:
     success_create: 'Item successfully created!'
     fail_create: "Couldn't create an Item"
 
-   template_item:
+  template_item:
     success_update: 'Template Item successfully updated!'
     fail_update: 'Failed to update'
-    success_destroy: 'Template Item successfully destroyed'
     success_create: 'Template Item successfully created!'
-    fail_destroy: 'Failed to destroy Template Item'
     fail_create: "Couldn't create an Template Item"
-
+    success_destroy: 'Template Item successfully destroyed'
+    fail_destroy: 'Failed to destroy Template Item'
