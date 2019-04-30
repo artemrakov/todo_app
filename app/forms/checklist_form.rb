@@ -1,3 +1,5 @@
+# creates checklist from checklist template
+# copies template items from checklist template to items from checklist
 class ChecklistForm
   include ActiveModel::Model
 
