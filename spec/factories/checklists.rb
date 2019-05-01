@@ -5,7 +5,7 @@ FactoryBot.define do
     association :checklist_template
 
     trait :invalid do
-      title { nil }
+      title { "" }
     end
   end
 end

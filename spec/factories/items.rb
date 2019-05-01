@@ -8,5 +8,9 @@ FactoryBot.define do
     trait :complete do
       done { true }
     end
+
+    trait :invalid do
+      title { "" }
+    end
   end
 end

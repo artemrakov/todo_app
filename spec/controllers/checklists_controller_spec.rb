@@ -58,28 +58,7 @@ RSpec.describe ChecklistsController, type: :controller do
       end
     end
 
-    # TODO: add pundit
-    # context 'as an unauthenticated user' do
-    #   before do
-    #     @user = FactoryBot.create(:user)
-    #     other_user = FactoryBot.create(:user)
-    #     @project = FactoryBot.create(:project, owner: other_user, name: "Same old name")
-    #   end
-
-    #   it 'does not update the project' do
-    #     project_params = FactoryBot.attributes_for(:project, name: "New project Name")
-    #     sign_in @user
-    #     patch :update, params: { id: @project.id, project: project_params }
-    #     expect(@project.reload.name).to eq "Same old name"
-    #   end
-
-    #   it 'redirects to the dashboard' do
-    #     project_params = FactoryBot.attributes_for(:project)
-    #     sign_in @user
-    #     patch :update, params: { id: @project.id, project: project_params }
-    #     expect(response).to redirect_to root_path
-    #   end
-    # end
+    # TODO: add pundit create tests for unauthenticated user
   end
 
   describe '#destroy' do
@@ -97,26 +76,6 @@ RSpec.describe ChecklistsController, type: :controller do
       end
     end
 
-    # TODO: add pundit
-    # context 'as an unauthenticated user' do
-    #   before do
-    #     @user = FactoryBot.create(:user)
-    #     other_user = FactoryBot.create(:user)
-    #     @project = FactoryBot.create(:project, owner: other_user)
-    #   end
-
-    #   it 'does not delete the project' do
-    #     sign_in @user
-    #     expect {
-    #       delete :destroy, params: { id: @project.id }
-    #     }.to_not change(Project, :count)
-    #   end
-
-    #   it 'redirects to the dashboard' do
-    #     sign_in @user
-    #     delete :destroy, params: { id: @project.id }
-    #     expect(response).to redirect_to root_path
-    #   end
-    # end
+    # TODO: add pundit create tests for unauthenticated user
   end
 end

@@ -3,7 +3,7 @@ FactoryBot.define do
     title { Faker::ProgrammingLanguage.name }
 
     trait :invalid do
-      title { nil }
+      title { "" }
     end
   end
 end
