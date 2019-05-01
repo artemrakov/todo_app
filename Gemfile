@@ -21,7 +21,6 @@ group :development do
 end
 
 group :test do
-  gem 'factory_bot_rails'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'capybara'
@@ -36,4 +35,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'faker'
+  gem 'factory_bot_rails'
 end
