@@ -67,6 +67,6 @@ RSpec.describe TemplateItemsController, type: :controller do
       end
     end
 
-    # TODO add pundit, create tests for unauthenticated user
+    # TODO: add pundit, create tests for unauthenticated user
   end
 end

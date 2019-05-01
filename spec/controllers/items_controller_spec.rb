@@ -46,7 +46,7 @@ RSpec.describe ItemsController, type: :controller do
       end
     end
 
-    # TODO add pundit, create tests for unauthenticated user
+    # TODO: add pundit, create tests for unauthenticated user
   end
 
   describe '#destroy' do
@@ -65,6 +65,6 @@ RSpec.describe ItemsController, type: :controller do
       end
     end
 
-    # TODO add pundit, create tests for unauthenticated user
+    # TODO: add pundit, create tests for unauthenticated user
   end
 end
