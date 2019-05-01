@@ -8,14 +8,15 @@ class ChecklistsController < ApplicationController
   def show
   end
 
-  def create
-    @checklist = current_user.checklists.build
-    if @checklist.save
-      redirect_to checklist_path(@checklist), notice: t('checklist.success_create')
-    else
-      redirect_to :index, alert: t('checklist.fail_create')
-    end
-  end
+# Commented out as you can only create checklist from checklist template
+  # def create
+  #   @checklist = current_user.checklists.build(checklist_params)
+  #   if @checklist.save
+  #     redirect_to checklist_path(@checklist), notice: t('checklist.success_create')
+  #   else
+  #     redirect_to checklists_path, alert: t('checklist.fail_create')
+  #   end
+  # end
 
   def update
     if @checklist.update(checklist_params)

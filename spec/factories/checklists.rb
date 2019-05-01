@@ -3,5 +3,9 @@ FactoryBot.define do
     title { Faker::ProgrammingLanguage.name }
     association :user
     association :checklist_template
+
+    trait :invalid do
+      title { nil }
+    end
   end
 end
