@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :template_item do
-    title { "Template Item" }
+    title { Faker::ProgrammingLanguage.name }
     association :template_checklist
   end
 end
