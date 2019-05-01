@@ -13,5 +13,4 @@ language: ruby
 rvm:
   - 2.5.3
 script:
-  - bundle exec rake assets:precompile
   - bundle exec rspec

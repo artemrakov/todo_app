@@ -20,6 +20,13 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
+group :test do
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'capybara'
+end
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -28,7 +35,5 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
-  gem 'factory_bot_rails'
-  gem 'shoulda-matchers'
-  gem 'database_cleaner'
+  gem 'faker'
 end
