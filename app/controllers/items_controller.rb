@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :find_checklist, only: %i[create update destroy]
-  before_action :find_item, only: %i[update destroy]
+  before_action :find_checklist, only: %i[create]
+  before_action :find_item, only: %i[update destroy complete undo]
 
   def create
     @item = @checklist.items.build
@@ -13,19 +13,27 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to checklist_path(@checklist), notice: t('item.success_update')
+      redirect_to checklist_path(@item.checklist), notice: t('item.success_update')
     else
-      redirect_to checklist_path(@checklist), alert: t('item.fail_update')
+      redirect_to checklist_path(@item.checklist), alert: t('item.fail_update')
     end
   end
 
   def destroy
     @item = Item.find(params[:id])
     if @item.destroy
-      redirect_to checklist_path(@checklist), notice: t('item.success_destroy')
+      redirect_to checklist_path(@item.checklist), notice: t('item.success_destroy')
     else
-      redirect_to checklist_path(@checklist), alert: t('item.fail_destroy')
+      redirect_to checklist_path(@item.checklist), alert: t('item.fail_destroy')
     end
+  end
+
+  def complete
+    @item.complete!
+  end
+
+  def undo
+    @item.undo!
   end
 
   private
@@ -39,6 +47,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:title, :done)
+    params.require(:item).permit(:title)
   end
 end
