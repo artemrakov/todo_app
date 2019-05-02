@@ -52,9 +52,9 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
         it 'adds a checklist_template' do
           checklist_template_params = FactoryBot.attributes_for(:checklist_template)
           sign_in @user
-          expect {
+          expect do
             post :create, params: { checklist_template: checklist_template_params }
-          }.to change(ChecklistTemplate, :count).by(1)
+          end.to change(ChecklistTemplate, :count).by(1)
         end
       end
 
@@ -62,9 +62,9 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
         it 'does not add a checklist_template' do
           checklist_template_params = FactoryBot.attributes_for(:checklist_template, :invalid)
           sign_in @user
-          expect {
+          expect do
             post :create, params: { checklist_template: checklist_template_params }
-          }.to_not change(ChecklistTemplate, :count)
+          end.to_not change(ChecklistTemplate, :count)
         end
       end
     end
@@ -80,9 +80,9 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
       context 'with valid attributes' do
         it 'creates checklist' do
           sign_in @user
-          expect {
+          expect do
             post :create_checklist, params: { id: @checklist_template.id }
-          }.to change(@user.checklists, :count).by(1)
+          end.to change(@user.checklists, :count).by(1)
         end
       end
     end

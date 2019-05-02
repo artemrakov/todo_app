@@ -12,9 +12,9 @@ RSpec.describe TemplateItemsController, type: :controller do
         it 'adds a template item' do
           template_item_params = FactoryBot.attributes_for(:template_item)
           sign_in @user
-          expect {
+          expect do
             post :create, params: { checklist_template_id: @checklist_template.id, template_item: template_item_params }
-          }.to change(@checklist_template.template_items, :count).by(1)
+          end.to change(@checklist_template.template_items, :count).by(1)
         end
       end
 
@@ -23,9 +23,9 @@ RSpec.describe TemplateItemsController, type: :controller do
           template_item_params = FactoryBot.attributes_for(:item, :invalid)
           sign_in @user
 
-          expect {
+          expect do
             post :create, params: { checklist_template_id: @checklist_template.id, template_item: template_item_params }
-          }.to_not change(@checklist_template.template_items, :count)
+          end.to_not change(@checklist_template.template_items, :count)
         end
       end
     end
@@ -61,9 +61,9 @@ RSpec.describe TemplateItemsController, type: :controller do
 
       it 'delete a item' do
         sign_in @user
-        expect {
+        expect do
           delete :destroy, params: { checklist_template_id: @checklist_template.id, id: @template_item.id }
-        }.to change(@checklist_template.template_items, :count).by(-1)
+        end.to change(@checklist_template.template_items, :count).by(-1)
       end
     end
 

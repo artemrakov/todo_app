@@ -29,9 +29,9 @@ RSpec.describe ItemsController, type: :controller do
 
       it 'delete a item' do
         sign_in @user
-        expect {
+        expect do
           delete :destroy, params: { checklist_id: @checklist.id, id: @item.id }
-        }.to change(@checklist.items, :count).by(-1)
+        end.to change(@checklist.items, :count).by(-1)
       end
     end
 
