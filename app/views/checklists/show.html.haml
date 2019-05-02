@@ -1,6 +1,6 @@
 .container
   %h1 Checklist
-  %h2{ id: "checklist_field" }
+  %h2{ id: "checklist-field" }
     = @checklist.title
     %a{ "data-toggle" => "modal", "data-target" => "#edit-checklist", href: "#" } Edit
     = link_to 'Delete', checklist_path(@checklist), method: :delete, data: { confirm: 'Are you sure?' }
