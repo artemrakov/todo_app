@@ -43,7 +43,11 @@ RSpec.describe TemplateItemsController, type: :controller do
       it 'updates a item' do
         template_item_params = FactoryBot.attributes_for(:item, title: 'New item title')
         sign_in @user
-        patch :update, params: { checklist_template_id: @checklist_template.id, template_item: template_item_params, id: @template_item.id }
+        patch :update, params: {
+          checklist_template_id: @checklist_template.id,
+          template_item: template_item_params,
+          id: @template_item.id
+        }
         expect(@template_item.reload.title).to eq 'New item title'
       end
     end
