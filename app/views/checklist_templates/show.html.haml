@@ -5,8 +5,8 @@
     - @template_items.each do |template_item|
       %li
         = template_item.title
-        = link_to 'Delete', checklist_template_template_item_path(@checklist_template, template_item), |
-          method: :delete, data: { confirm: 'Are you sure?' } |
+        = link_to 'Delete', checklist_template_template_item_path(@checklist_template, template_item),
+          method: :delete, data: { confirm: 'Are you sure?' }
 
   = link_to "Create Checklist", create_checklist_checklist_template_path(@checklist_template), method: :post
 
