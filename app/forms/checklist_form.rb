@@ -6,6 +6,8 @@ class ChecklistForm
   attr_accessor :checklist_template
   attr_accessor :checklist
 
+  validates :title, presence: true, length: { maximum: 100 }
+
   def initialize(attributes)
     super(attributes)
     @checklist = Checklist.new(title: title, user: user, checklist_template: checklist_template)
