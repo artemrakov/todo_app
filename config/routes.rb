@@ -3,10 +3,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :checklists, except: %i[new] do
     resources :items, only: %i[create update destroy] do
-      member do
-        post :complete
-        post :undo
-      end
+      post :create, controller: :item_resolve
+      delete :destroy, controller: :item_resolve
     end
   end
   resources :checklist_templates do

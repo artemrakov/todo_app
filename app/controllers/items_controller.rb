@@ -28,14 +28,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def complete
-    @item.complete!
-  end
-
-  def undo
-    @item.undo!
-  end
-
   private
 
   def find_checklist

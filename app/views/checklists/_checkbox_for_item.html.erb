@@ -1,9 +1,9 @@
 <% if item.not_done? %>
-  <%= simple_form_for [checklist, item], url: complete_checklist_item_path(checklist, item), method: :post do |f| %>
+  <%= simple_form_for [checklist, item], url: checklist_item_create_path(checklist, item), method: :post do |f| %>
     <%= f.check_box :state, checked: item.done? %>
   <% end %>
 <% else %>
-  <%= simple_form_for [checklist, item], url: undo_checklist_item_path(checklist, item), method: :post do |f| %>
+  <%= simple_form_for [checklist, item], url: checklist_item_destroy_path(checklist, item), method: :post do |f| %>
     <%= f.check_box :state, checked: item.done?  %>
   <% end %>
 <% end %>

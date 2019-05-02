@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_05_02_095651) do
     t.datetime "updated_at", null: false
     t.bigint "checklist_id"
     t.bigint "template_item_id"
-    t.string "state", null: false
+    t.string "state", default: "not_done", null: false
     t.index ["checklist_id"], name: "index_items_on_checklist_id"
     t.index ["template_item_id"], name: "index_items_on_template_item_id"
   end
