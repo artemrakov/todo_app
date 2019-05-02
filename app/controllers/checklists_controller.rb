@@ -1,8 +1,10 @@
 class ChecklistsController < ApplicationController
+  include Pagy::Backend
+
   before_action :find_checklist, only: %i[show update destroy]
 
   def index
-    @checklists = Checklist.all
+    @pagy, @checklists = pagy(Checklist.all)
   end
 
   def show
