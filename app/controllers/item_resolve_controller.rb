@@ -1,3 +1,4 @@
+# Controller that handles the state of Item
 class ItemResolveController < ApplicationController
   before_action :find_item, only: %i[create destroy]
   before_action :find_checklist, only: %i[create destroy]
