@@ -1,0 +1,7 @@
+%div.container
+  %h1 Checklist templates
+  %ul
+    - @checklist_templates.each do |template|
+      %li= link_to template.title, checklist_template_path(template)
+
+  = link_to 'Create Checklist template', new_checklist_template_path

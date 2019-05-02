@@ -1,0 +1,15 @@
+%div.container
+  %h1 Checklist
+  %h2{id: "checklist_field"}
+    = @checklist.title
+    %a(data-toggle="modal" data-target="#edit_checklist" href="#") Edit
+    = link_to 'Delete', checklist_path(@checklist), method: :delete, data: { confirm: 'Are you sure?' }
+  %ul
+    - @checklist.items.each do |item|
+      %li
+        = render 'checkbox_for_item', item: item, checklist: @checklist
+        = item.title
+        = link_to 'Delete', checklist_item_path(@checklist, item), method: :delete, data: { confirm: 'Are you sure?' }
+  = link_to 'New todo', checklist_items_path(@checklist), method: :post
+
+= render "checklist_modal", checklist: @checklist

@@ -1,0 +1,7 @@
+%div.container
+  %h1 Checklists
+  %ul
+    - @checklists.each do |checklist|
+      %li= link_to checklist.title, checklist_path(checklist)
+
+  = link_to 'Create Checklist', checklists_path, method: :post
