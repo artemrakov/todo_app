@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe ChecklistsController, type: :controller do
+  let(:user) { create(:user) }
+  let(:checklist) { create(:checklist, user: user) }
+
   describe '#index' do
     context 'as an authenticated user' do
-      before do
-        @user = FactoryBot.create(:user)
-      end
-
       it 'responds successfully' do
-        sign_in @user
+        sign_in user
         get :index
         expect(response).to have_http_status '200'
       end
@@ -29,14 +28,9 @@ RSpec.describe ChecklistsController, type: :controller do
 
   describe '#show' do
     context 'as an authenticated user' do
-      before do
-        @user = FactoryBot.create(:user)
-        @checklist = FactoryBot.create(:checklist)
-      end
-
       it 'responds successfully' do
-        sign_in @user
-        get :show, params: { id: @checklist.id }
+        sign_in user
+        get :show, params: { id: checklist.id }
         expect(response).to have_http_status '200'
       end
     end
@@ -46,15 +40,11 @@ RSpec.describe ChecklistsController, type: :controller do
 
   describe '#update' do
     context 'as an authenticated user' do
-      before do
-        @user = FactoryBot.create(:user)
-        @checklist = FactoryBot.create(:checklist, user: @user)
-      end
       it 'updates a checklist' do
         checklist_params = FactoryBot.attributes_for(:checklist, title: 'New Checklist name')
-        sign_in @user
-        patch :update, params: { id: @checklist.id, checklist: checklist_params }
-        expect(@checklist.reload.title).to eq 'New Checklist name'
+        sign_in user
+        patch :update, params: { id: checklist.id, checklist: checklist_params }
+        expect(checklist.reload.title).to eq 'New Checklist name'
       end
     end
 
@@ -63,16 +53,12 @@ RSpec.describe ChecklistsController, type: :controller do
 
   describe '#destroy' do
     context 'as an authenticated user' do
-      before do
-        @user = FactoryBot.create(:user)
-        @checklist = FactoryBot.create(:checklist, user: @user)
-      end
-
       it 'deletes a checklist' do
-        sign_in @user
+        sign_in user
+        checklist
         expect do
-          delete :destroy, params: { id: @checklist.id }
-        end.to change(@user.checklists, :count).by(-1)
+          delete :destroy, params: { id: checklist.id }
+        end.to change(user.checklists, :count).by(-1)
       end
     end
 

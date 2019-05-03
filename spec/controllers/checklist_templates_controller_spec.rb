@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ChecklistTemplatesController, type: :controller do
+  let(:user) { create(:user) }
+  let(:checklist_template) { create(:checklist_template) }
+
   describe '#index' do
     context 'as an authenticated user' do
-      let(:user) { create(:user) }
-
       it 'responds successfully' do
         sign_in user
         get :index
@@ -27,14 +28,9 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
 
   describe '#show' do
     context 'as an authenticated user' do
-      before do
-        @user = FactoryBot.create(:user)
-        @checklist_template = FactoryBot.create(:checklist_template)
-      end
-
       it 'responds successfully' do
-        sign_in @user
-        get :show, params: { id: @checklist_template.id }
+        sign_in user
+        get :show, params: { id: checklist_template.id }
         expect(response).to have_http_status '200'
       end
     end
@@ -42,14 +38,10 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
 
   describe '#create' do
     context 'as an authenticated user' do
-      before do
-        @user = FactoryBot.create(:user)
-      end
-
       context 'with valid attributes' do
         it 'adds a checklist_template' do
           checklist_template_params = FactoryBot.attributes_for(:checklist_template)
-          sign_in @user
+          sign_in user
           expect do
             post :create, params: { checklist_template: checklist_template_params }
           end.to change(ChecklistTemplate, :count).by(1)
@@ -59,7 +51,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
       context 'with invalid attributes' do
         it 'does not add a checklist_template' do
           checklist_template_params = FactoryBot.attributes_for(:checklist_template, :invalid)
-          sign_in @user
+          sign_in user
           expect do
             post :create, params: { checklist_template: checklist_template_params }
           end.to_not change(ChecklistTemplate, :count)
@@ -70,17 +62,12 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
 
   describe '#create_checklist' do
     context 'as an authenticated user' do
-      before do
-        @user = FactoryBot.create(:user)
-        @checklist_template = FactoryBot.create(:checklist_template)
-      end
-
       context 'with valid attributes' do
         it 'creates checklist' do
-          sign_in @user
+          sign_in user
           expect do
-            post :create_checklist, params: { id: @checklist_template.id }
-          end.to change(@user.checklists, :count).by(1)
+            post :create_checklist, params: { id: checklist_template.id }
+          end.to change(user.checklists, :count).by(1)
         end
       end
     end
