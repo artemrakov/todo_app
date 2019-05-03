@@ -29,4 +29,5 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
+  gem 'faker'
 end
