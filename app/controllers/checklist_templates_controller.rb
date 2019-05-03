@@ -14,7 +14,7 @@ class ChecklistTemplatesController < ApplicationController
     if @checklist_template.save
       redirect_to checklist_template_path(@checklist_template), notice: t('checklist_template.success_create')
     else
-      redirect_to :index, alert: t('checklist_template.fail_create')
+      redirect_to checklist_templates_path, alert: t('checklist_template.fail_create')
     end
   end
 

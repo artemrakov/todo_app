@@ -1,13 +1,13 @@
 .container
-  %h1 Checklist templates
-  %h2 Name: #{@checklist_template.title}
+  %h1= t('views.checklist_templates.index.title')
+  %h2 #{@checklist_template.title}
   %ul
     - @template_items.each do |template_item|
       %li
         = template_item.title
-        = link_to 'Delete', checklist_template_template_item_path(@checklist_template, template_item),
-          method: :delete, data: { confirm: 'Are you sure?' }
+        = link_to t('views.checklist_templates.delete.title'), checklist_template_template_item_path(@checklist_template, template_item),
+          method: :delete, data: { confirm: t('confirmation') }
 
-  = link_to "Create Checklist", create_checklist_checklist_template_path(@checklist_template), method: :post
+  = link_to t('views.checklist_templates.create.checklist'), create_checklist_checklist_template_path(@checklist_template), method: :post
 
 

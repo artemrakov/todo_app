@@ -1,3 +1,6 @@
+# User Template checklist where you can:
+# add template_items
+# create checklists from this template
 class ChecklistTemplate < ApplicationRecord
   has_many :checklists
   has_many :template_items

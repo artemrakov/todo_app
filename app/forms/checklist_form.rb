@@ -1,3 +1,5 @@
+# creates checklist from checklist template
+# copies template items from checklist template to items from checklist
 class ChecklistForm
   include ActiveModel::Model
 
@@ -5,6 +7,8 @@ class ChecklistForm
   attr_accessor :user
   attr_accessor :checklist_template
   attr_accessor :checklist
+
+  validates :title, presence: true, length: { maximum: 100 }
 
   def initialize(attributes)
     super(attributes)

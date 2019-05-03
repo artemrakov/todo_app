@@ -1,3 +1,9 @@
-<%#= simple_form_for [checklist, item] do |f| %>
-  <%#= f.check_box :done, as: :boolean %>
-<%# end %>
+<% if item.not_done? %>
+  <%= simple_form_for [checklist, item], url: item_complete_path(item), method: :post do |f| %>
+    <%= f.check_box :state, checked: item.done? %>
+  <% end %>
+<% else %>
+  <%= simple_form_for [checklist, item], url: item_undo_path(item), method: :delete do |f| %>
+    <%= f.check_box :state, checked: item.done?  %>
+  <% end %>
+<% end %>
