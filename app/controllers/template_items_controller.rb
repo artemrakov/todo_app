@@ -38,6 +38,6 @@ class TemplateItemsController < ApplicationController
   end
 
   def template_item_params
-    params.require(:template_item).permit(:title)
+    params.require(:template_item).permit(:title, :description)
   end
 end

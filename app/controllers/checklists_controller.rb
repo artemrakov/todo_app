@@ -8,15 +8,6 @@ class ChecklistsController < ApplicationController
   def show
   end
 
-  def create
-    @checklist = current_user.checklists.build
-    if @checklist.save
-      redirect_to checklist_path(@checklist), notice: t('checklist.success_create')
-    else
-      redirect_to :index, alert: t('checklist.fail_create')
-    end
-  end
-
   def update
     if @checklist.update(checklist_params)
       redirect_to checklist_path(@checklist), notice: t('checklist.success_update')
