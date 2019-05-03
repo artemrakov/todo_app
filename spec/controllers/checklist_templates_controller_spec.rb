@@ -3,12 +3,10 @@ require 'rails_helper'
 RSpec.describe ChecklistTemplatesController, type: :controller do
   describe '#index' do
     context 'as an authenticated user' do
-      before do
-        @user = FactoryBot.create(:user)
-      end
+      let(:user) { create(:user) }
 
       it 'responds successfully' do
-        sign_in @user
+        sign_in user
         get :index
         expect(response).to have_http_status '200'
       end
