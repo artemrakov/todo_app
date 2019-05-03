@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :item do
     title { Faker::ProgrammingLanguage.name }
-    done { false }
+    state { "not_done" }
     association :checklist
     association :template_item
 
     trait :complete do
-      done { true }
+      state { "done" }
     end
 
     trait :invalid do
