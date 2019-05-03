@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ChecklistsController, type: :controller do
   let(:user) { create(:user) }
-  let(:checklist) { create(:checklist, user: user) }
+  let!(:checklist) { create(:checklist, user: user) }
 
   describe '#index' do
     context 'as an authenticated user' do
@@ -55,7 +55,6 @@ RSpec.describe ChecklistsController, type: :controller do
     context 'as an authenticated user' do
       it 'deletes a checklist' do
         sign_in user
-        checklist
         expect do
           delete :destroy, params: { id: checklist.id }
         end.to change(user.checklists, :count).by(-1)
