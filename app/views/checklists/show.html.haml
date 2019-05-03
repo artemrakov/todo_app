@@ -3,11 +3,13 @@
   %h2{ id: "checklist-field" }
     = @checklist.title
     %a{ "data-toggle" => "modal", "data-target" => "#edit-checklist", href: "#" } Edit
-    = link_to t('views.checklists.delete.title'), checklist_path(@checklist), method: :delete, data: { confirm: 'Are you sure?' }
+    = link_to t('views.checklists.delete.title'),
+      checklist_path(@checklist), method: :delete, data: { confirm: 'Are you sure?' }
   %ul
     - @checklist.items.each do |item|
       %li
         = render 'checkbox_for_item', item: item, checklist: @checklist
         = item.title
-        = link_to t('views.items.delete.title'), checklist_item_path(@checklist, item), method: :delete, data: { confirm: 'Are you sure?' }
+        = link_to t('views.items.delete.title'),
+          checklist_item_path(@checklist, item), method: :delete, data: { confirm: 'Are you sure?' }
 = render "checklist_modal", checklist: @checklist
