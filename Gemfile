@@ -16,9 +16,16 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'pagy'
+gem 'aasm'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'capybara'
 end
 
 group :development, :test do
@@ -26,8 +33,9 @@ group :development, :test do
   gem 'pry-rails'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
+  gem 'faker'
+  gem 'factory_bot_rails'
 end

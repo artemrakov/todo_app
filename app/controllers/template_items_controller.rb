@@ -1,5 +1,5 @@
 class TemplateItemsController < ApplicationController
-  before_action :find_checklist_template, only: %i[create update destroy]
+  before_action :find_checklist_template, only: %i[create]
   before_action :find_template_item, only: %i[update destroy]
 
   def create
@@ -13,17 +13,17 @@ class TemplateItemsController < ApplicationController
 
   def update
     if @template_item.update(template_item_params)
-      redirect_to checklist_template_path(@checklist_template), notice: t('template_item.success_update')
+      redirect_to checklist_template_path(@template_item.checklist_template), notice: t('template_item.success_update')
     else
-      redirect_to checklist_template_path(@checklist_template), alert: t('template_item.fail_update')
+      redirect_to checklist_template_path(@template_item.checklist_template), alert: t('template_item.fail_update')
     end
   end
 
   def destroy
     if @template_item.destroy
-      redirect_to checklist_template_path(@checklist_template), notice: t('template_item.success_destroy')
+      redirect_to checklist_template_path(@template_item.checklist_template), notice: t('template_item.success_destroy')
     else
-      redirect_to checklist_template_path(@checklist_template), alert: t('template_item.fail_destroy')
+      redirect_to checklist_template_path(@template_item.checklist_template), alert: t('template_item.fail_destroy')
     end
   end
 
@@ -38,6 +38,6 @@ class TemplateItemsController < ApplicationController
   end
 
   def template_item_params
-    params.require(:template_item).permit(:title)
+    params.require(:template_item).permit(:title, :description)
   end
 end
