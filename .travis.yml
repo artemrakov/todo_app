@@ -1,10 +1,10 @@
+services:
+  - elasticsearch
 cache:
   bundler: true
   yarn: true
   directories:
     - ./bin/setup
-  services:
-    - elasticsearch
 before_script:
   - sleep 10
   - cp config/database.yml.travis config/database.yml
