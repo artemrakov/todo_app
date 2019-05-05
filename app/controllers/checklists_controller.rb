@@ -2,7 +2,7 @@ class ChecklistsController < ApplicationController
   before_action :find_checklist, only: %i[show update destroy]
 
   def index
-    @checklist_view = ChecklistView.new(Checklist.all, params)
+    @checklist_view = ChecklistPaginationView.new(params)
   end
 
   def show

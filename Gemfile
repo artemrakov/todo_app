@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'pagy'
+gem 'haml'
 gem 'aasm'
 
 group :development do

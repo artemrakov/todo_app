@@ -1,0 +1,9 @@
+.container
+  %h1= t('views.checklists.index.title')
+  %ul
+    - @checklists.each do |checklist|
+      %li= link_to checklist.title, checklist_path(checklist)
+
+  = pagy_bootstrap_nav(@checklist_view.pagination).html_safe
+
+  = link_to t('views.checklists.create.title'), checklists_path, method: :post
