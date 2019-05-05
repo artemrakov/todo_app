@@ -6,6 +6,7 @@ cache:
   services:
     - elasticsearch
 before_script:
+  - sleep 5
   - cp config/database.yml.travis config/database.yml
   - bundle exec rake db:create RAILS_ENV=test # database user by default is `travis`
   - bundle exec rake db:migrate RAILS_ENV=test
