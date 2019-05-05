@@ -3,6 +3,8 @@ cache:
   yarn: true
   directories:
     - ./bin/setup
+  services:
+    - elasticsearch
 before_script:
   - cp config/database.yml.travis config/database.yml
   - bundle exec rake db:create RAILS_ENV=test # database user by default is `travis`
