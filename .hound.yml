@@ -1,2 +1,4 @@
+haml:
+  config_file: .haml-lint.yml
 rubocop:
   config_file: .rubocop.yml
