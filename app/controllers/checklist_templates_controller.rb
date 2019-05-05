@@ -42,6 +42,6 @@ class ChecklistTemplatesController < ApplicationController
   end
 
   def checklist_template_params
-    params.require(:checklist_template).permit(:title)
+    params.require(:checklist_template).permit(:title, :tag_list)
   end
 end
