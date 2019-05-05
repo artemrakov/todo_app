@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :items, only: %i[create update destroy]
   end
 
+  namespace :checklist_templates do
+    resource :search, only: :show
+  end
+
   resources :checklist_templates do
     resources :template_items, only: %i[create update destroy]
     member do
@@ -13,9 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :checklist_templates do
-    resource :search, only: :show
-  end
+
 
   # Item states
   post 'item_states/create/:id', to: 'item_states#create', as: :item_complete

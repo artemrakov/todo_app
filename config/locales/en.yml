@@ -1,37 +1,44 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   edit_button: 'Edit'
   delete_button: 'Delete'
+  confirmation: 'Are you sure?'
+  search: 'Search'
+
+  views:
+    pages:
+      home:
+        title: 'Search for templates'
+    checklists:
+      show:
+        title: 'Checklist'
+      index:
+        title: 'All checklists'
+      create:
+        title: 'Create checklist'
+      delete:
+        title: 'Delete'
+    items:
+      create:
+        title: 'New item'
+      delete:
+        title: 'Delete'
+    checklist_templates:
+      searches:
+        show:
+          title: 'Results found:'
+      show:
+        title: 'Checklist template'
+        tags: 'Tags:'
+      index:
+        title: 'All checklist templates'
+      create:
+        title: 'Create checklist template'
+        checklist: 'Create checklist from this template'
+      delete:
+        title: 'Delete'
+
+  button:
+    close: 'Close'
 
   paths:
     new_item_path: 'New Item'
@@ -40,7 +47,6 @@ en:
     new_checklist_path: 'New Checklist'
 
   checklist:
-    index: 'All Checklists'
     success_create: 'Checklist successfully created!'
     fail_create: 'Failed to create checklist'
     success_update: 'Checklist successfully updated!'
@@ -49,7 +55,6 @@ en:
     fail_destroy: 'Failed to destroy Checklist'
 
   checklist_template:
-    index: 'All Templates'
     success_create: 'Checklist template successfully created!'
     fail_create: 'Failed to create checklist template'
     success_update: 'Checklist template successfully updated!'
