@@ -25,8 +25,6 @@ MutableConstant:
   Enabled: false
 SignalException:
   Enabled: false
-Casecmp:
-  Enabled: false
 CyclomaticComplexity:
   Enabled: false
 MissingRespondToMissing:
@@ -46,3 +44,5 @@ Metrics/BlockLength:
     - 'Rakefile'
     - '**/*.rake'
     - 'spec/**/*.rb'
+Style/ClassAndModuleChildren:
+  Enabled: false

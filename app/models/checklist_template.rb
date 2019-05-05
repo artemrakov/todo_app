@@ -3,9 +3,11 @@
 # create checklists from this template
 # add tags
 class ChecklistTemplate < ApplicationRecord
-  acts_as_taggable
   has_many :checklists
   has_many :template_items
+
+  acts_as_taggable
+  searchkick
 
   validates :title, presence: true, length: { maximum: 100 }
 end

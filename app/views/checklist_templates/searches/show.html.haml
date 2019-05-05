@@ -1,0 +1,4 @@
+%ul
+  - @checklist_templates.each do |template|
+    %li= link_to template.title, checklist_template_path(template)
+

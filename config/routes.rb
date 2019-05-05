@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :checklist_templates do
+    resource :search, only: :show
+  end
+
   # Item states
   post 'item_states/create/:id', to: 'item_states#create', as: :item_complete
   delete 'item_states/destroy/:id', to: 'item_states#destroy', as: :item_undo
