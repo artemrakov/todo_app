@@ -13,6 +13,8 @@ RSpec.describe ItemStatesController, type: :controller do
         expect(item.reload.state).to eq 'done'
       end
     end
+
+    it_behaves_like 'as guest', request: 'post', method: 'create', params: { id: 1 }
   end
 
   describe '#destroy' do
@@ -23,5 +25,7 @@ RSpec.describe ItemStatesController, type: :controller do
         expect(item_done.reload.state).to eq 'not_done'
       end
     end
+
+    it_behaves_like 'as guest', request: 'delete', method: 'destroy', params: { id: 1 }
   end
 end
