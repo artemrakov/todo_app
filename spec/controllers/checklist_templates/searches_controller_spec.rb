@@ -10,11 +10,6 @@ RSpec.describe ChecklistTemplates::SearchesController, type: :controller do
         allow(request.env['warden']).to receive(:authenticate!).and_return(:user)
       end
 
-      it 'responds successfully' do
-        get :show
-        expect(response).to have_http_status '200'
-      end
-
       it 'searches by the provided keyword' do
         expect(checklist_template).to receive(:search).with('sport')
         get :show, params: { search: 'sport' }
