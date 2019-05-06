@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :checklists, except: %i[new] do
-    resources :items, only: %i[create update destroy]
+    resources :items, only: %i[create update destroy] do
+      resource :state, only: %i[create destroy], controller: :item_states
+    end
   end
 
   resources :checklist_templates do
@@ -12,8 +14,4 @@ Rails.application.routes.draw do
       post :create_checklist
     end
   end
-
-  # Item states
-  post 'item_states/create/:id', to: 'item_states#create', as: :item_complete
-  delete 'item_states/destroy/:id', to: 'item_states#destroy', as: :item_undo
 end
