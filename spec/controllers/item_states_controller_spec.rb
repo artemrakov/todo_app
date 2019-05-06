@@ -14,7 +14,12 @@ RSpec.describe ItemStatesController, type: :controller do
       end
     end
 
-    it_behaves_like 'as guest', request: 'post', method: 'create', params: { id: 1 }
+    context 'as a guest' do
+      it_behaves_like 'as guest', request: 'post', method: 'create' do
+        let(:item) { create(:item) }
+        let(:params) { { id: item.id } }
+      end
+    end
   end
 
   describe '#destroy' do
@@ -26,6 +31,11 @@ RSpec.describe ItemStatesController, type: :controller do
       end
     end
 
-    it_behaves_like 'as guest', request: 'delete', method: 'destroy', params: { id: 1 }
+    context 'as guest' do
+      it_behaves_like 'as guest', request: 'post', method: 'create' do
+        let(:item_done) { create(:item, :complete) }
+        let(:params) { { id: item_done.id } }
+      end
+    end
   end
 end
