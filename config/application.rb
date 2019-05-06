@@ -11,7 +11,7 @@ module TodoApp
     config.generators do |generate|
           generate.assets false
           generate.helper false
-          generate.test_framework  :rspec, fixture: false
+          generate.test_framework  :rspec
         end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
