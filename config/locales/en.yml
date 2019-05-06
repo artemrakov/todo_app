@@ -28,6 +28,9 @@ en:
         checklist: 'Create checklist from this template'
       delete:
         title: 'Delete'
+    template_items:
+      create:
+        title: 'New template item'
 
   button:
     close: 'Close'

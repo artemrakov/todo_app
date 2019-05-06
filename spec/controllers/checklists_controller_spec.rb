@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ChecklistsController, type: :controller do
   let(:user) { create(:user) }
   let!(:checklist) { create(:checklist, user: user) }
+  let(:checklist_template) { create(:checklist_template) }
 
   describe '#index' do
     context 'as an authenticated user' do
@@ -36,6 +37,19 @@ RSpec.describe ChecklistsController, type: :controller do
     end
 
     # TODO: add pundit, create tests for unauthenticated user
+  end
+
+  describe '#create' do
+    context 'as an authenticated user' do
+      context 'with valid attributes' do
+        it 'creates checklist' do
+          sign_in user
+          expect do
+            post :create, params: { checklist_template_id: checklist_template.id }
+          end.to change(checklist_template.reload.checklists, :count).by(1)
+        end
+      end
+    end
   end
 
   describe '#update' do
