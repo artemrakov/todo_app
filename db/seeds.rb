@@ -1,7 +1,29 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "Creating Users"
+3.times do |n|
+  User.create!(email: Faker::Internet.email, password: 123123)
+end
+user_1 = User.first
+user_2 = User.second
+
+
+puts "Creating ChecklistTemplate"
+3.times do |n|
+  ChecklistTemplate.create!(title: Faker::Book.title)
+end
+template_1 = ChecklistTemplate.first
+template_2 = ChecklistTemplate.second
+
+
+puts "Creating TemplateItems"
+3.times do |n|
+  TemplateItem.create(title: Faker::Movie.quote, checklist_template: template_1)
+  TemplateItem.create(title: Faker::Movie.quote, checklist_template: template_1)
+  TemplateItem.create(title: Faker::Movie.quote, checklist_template: template_2)
+end
+
+puts "Creating checklist with items"
+ChecklistForm.new(title: template_1.title, user: user_1, checklist_template: template_1).save
+ChecklistForm.new(title: template_1.title, user: user_2, checklist_template: template_1).save
+ChecklistForm.new(title: template_2.title, user: user_2, checklist_template: template_2).save
+
+puts "Done!"
