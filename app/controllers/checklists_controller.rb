@@ -18,7 +18,7 @@ class ChecklistsController < ApplicationController
     if @checklist_form.save
       redirect_to checklist_path(@checklist_form.checklist)
     else
-      redirect_to checklist_templates(@checklist_template)
+      redirect_to checklist_templates_path(@checklist_template)
     end
   end
 

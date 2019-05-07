@@ -46,10 +46,21 @@ RSpec.describe ChecklistsController, type: :controller do
           sign_in user
           expect do
             post :create, params: { checklist_template_id: checklist_template.id }
-          end.to change(checklist_template.reload.checklists, :count).by(1)
+          end.to change(user.reload.checklists, :count).by(1)
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not create checklist' do
+          checklist_template.update_attribute(:title, '')
+          sign_in user
+          expect do
+            post :create, params: { checklist_template_id: checklist_template.id }
+          end.to_not change(user.reload.checklists, :count)
         end
       end
     end
+    # TODO: add pundit, create tests for unauthenticated user
   end
 
   describe '#update' do
