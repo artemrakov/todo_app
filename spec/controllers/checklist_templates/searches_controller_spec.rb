@@ -10,8 +10,8 @@ RSpec.describe ChecklistTemplates::SearchesController, type: :controller do
         allow(request.env['warden']).to receive(:authenticate!).and_return(:user)
       end
 
-      it 'searches by the provided keyword' do
-        expect(checklist_template).to receive(:search).with('sport')
+      it 'searches by the provided keyword and private false' do
+        expect(checklist_template).to receive(:search).with('sport', where: { private: false })
         get :show, params: { search: 'sport' }
       end
     end
