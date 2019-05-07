@@ -25,10 +25,10 @@ class ChecklistTemplatesController < ApplicationController
   private
 
   def find_checklist_template
-    @checklist_template = ChecklistTemplate.find(params[:id])
+    @checklist_template = ChecklistTemplate.find(params[:id]).decorate
   end
 
   def checklist_template_params
-    params.require(:checklist_template).permit(:title)
+    params.require(:checklist_template).permit(:title, :tag_list)
   end
 end
