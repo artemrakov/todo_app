@@ -59,17 +59,4 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
       end
     end
   end
-
-  describe '#create_checklist' do
-    context 'as an authenticated user' do
-      context 'with valid attributes' do
-        it 'creates checklist' do
-          sign_in user
-          expect do
-            post :create_checklist, params: { id: checklist_template.id }
-          end.to change(user.checklists, :count).by(1)
-        end
-      end
-    end
-  end
 end
