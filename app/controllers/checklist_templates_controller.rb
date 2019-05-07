@@ -2,7 +2,7 @@ class ChecklistTemplatesController < ApplicationController
   before_action :find_checklist_template, only: %i[show create_checklist]
 
   def index
-    @checklist_templates = ChecklistTemplate.all
+    @checklist_templates = ChecklistTemplate.where(private: false)
   end
 
   def new

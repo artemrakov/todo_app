@@ -8,7 +8,7 @@ user_2 = User.second
 
 puts "Creating ChecklistTemplate"
 3.times do |n|
-  ChecklistTemplate.create!(title: Faker::Book.title)
+  ChecklistTemplate.create!(title: Faker::Book.title, user: user_1)
 end
 template_1 = ChecklistTemplate.first
 template_2 = ChecklistTemplate.second

@@ -2,7 +2,7 @@ class ChecklistsController < ApplicationController
   before_action :find_checklist, only: %i[show update destroy]
 
   def index
-    @checklists = Checklist.all
+    @checklists = Checklist.where(user: current_user)
   end
 
   def show

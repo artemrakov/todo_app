@@ -1,0 +1,7 @@
+.container
+  %h1= t('views.checklist_templates.users.show.title')
+  %ul
+    - @checklist_templates.each do |template|
+      %li= link_to template.title, checklist_template_path(template)
+
+  = link_to t('views.checklist_templates.create.title'), new_checklist_template_path

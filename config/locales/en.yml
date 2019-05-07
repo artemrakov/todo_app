@@ -8,7 +8,7 @@ en:
       show:
         title: 'Checklist'
       index:
-        title: 'All checklists'
+        title: 'My checklists'
       create:
         title: 'Create checklist'
       delete:
@@ -19,6 +19,9 @@ en:
       delete:
         title: 'Delete'
     checklist_templates:
+      users:
+        show:
+          title: 'My checklist templatess'
       show:
         title: 'Checklist template'
       index:

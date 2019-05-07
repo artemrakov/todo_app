@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :items, only: %i[create update destroy]
   end
 
+  namespace :checklist_templates do
+    resource :user, only: :show
+  end
+
   resources :checklist_templates do
     resources :template_items, only: %i[create update destroy]
     member do
