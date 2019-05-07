@@ -11,4 +11,5 @@ language: ruby
 rvm:
   - 2.5.3
 script:
+  - bundle exec rake db:seed
   - bundle exec rspec
