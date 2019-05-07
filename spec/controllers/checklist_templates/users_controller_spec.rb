@@ -13,7 +13,7 @@ RSpec.describe ChecklistTemplates::UsersController, type: :controller do
         expect(response).to have_http_status '200'
       end
 
-      it 'shows only users checklists' do
+      it 'shows only users checklists templates' do
         sign_in user
         expect(checklist_template_class).to receive(:where).with(user: user)
         get :show
