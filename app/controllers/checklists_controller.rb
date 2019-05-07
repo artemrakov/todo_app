@@ -8,6 +8,16 @@ class ChecklistsController < ApplicationController
   def show
   end
 
+  def new
+    @checklist = Checklist.new
+  end
+
+  def create
+    checklist_template = ChecklistTemplateCreator.new(
+      checklist: checklist_params, checklist_template: checklist_template_params
+    )
+  end
+
   def update
     if @checklist.update(checklist_params)
       redirect_to checklist_path(@checklist), notice: t('checklist.success_update')
@@ -32,5 +42,9 @@ class ChecklistsController < ApplicationController
 
   def checklist_params
     params.require(:checklist).permit(:title)
+  end
+
+  def checklist_template_params
+    params.require(:checklist_template).permit(:one_time, :private)
   end
 end

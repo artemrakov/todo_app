@@ -1,0 +1,23 @@
+.container
+  = simple_form_for @checklist do |f|
+    = f.input :title
+    %filedset.form-group.string.required.checklist_template_one_time
+      %legends.form-control-label.string.required{ for: "checklist_template_one_time" } One time
+      %input.form-control.string.required{ type: "hidden", name: "checklist_template[one_time]", id: "checklist_template_one_time", value: "" }
+      .form-check
+        %input.form-check-input.radio_buttons{ type: "radio", value: "true", name: "checklist_template[one_time]", id: "checklist_template_one_time_true"  }
+        %label.collection_radio_buttons{ for: "checklist_template_one_time_true" } Yes
+      .form-check
+        %input.form-check-input.radio_buttons{ type: "radio", value: "false", name: "checklist_template[one_time]", id: "checklist_template_one_time_false"  }
+        %label.collection_radio_buttons{ for: "checklist_template_one_time_false" } No
+
+    %filedset.form-group.string.required.checklist_template_private
+      %legends.form-control-label.string.required{ for: "checklist_template_private" } You wish to create private template?
+      %input.form-control.string.required{ type: "hidden", name: "checklist_template[private]", id: "checklist_template_private", value: "" }
+      .form-check
+        %input.form-check-input.radio_buttons{ type: "radio", value: "true", name: "checklist_template[private]", id: "checklist_template_private_true"  }
+        %label.collection_radio_buttons{ for: "checklist_template_private_true" } Yes
+      .form-check
+        %input.form-check-input.radio_buttons{ type: "radio", value: "false", name: "checklist_template[private]", id: "checklist_template_private_false"  }
+        %label.collection_radio_buttons{ for: "checklist_template_private_false" } No
+    = f.submit

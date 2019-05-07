@@ -1,5 +1,5 @@
 .container
-  %h1= t('views.checklist_templates.index.title')
+  %h1= t('views.checklist_templates.show.title')
   %h2 @checklist_template.title
   %ul
     - @template_items.each do |template_item|
@@ -9,7 +9,9 @@
           checklist_template_template_item_path(@checklist_template, template_item),
           method: :delete, data: { confirm: t('confirmation') }
 
-  = link_to t('views.checklist_templates.create.checklist'),
-    create_checklist_checklist_template_path(@checklist_template), method: :post
+  = render 'new_template_item_modal', checklist_template: @checklist_template, template_item: TemplateItem.new
+
+/ link_to t('views.checklist_templates.create.checklist'),
+/ create_checklist_checklist_template_path(@checklist_template), method: :post
 
 
