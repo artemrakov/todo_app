@@ -8,9 +8,6 @@ Rails.application.routes.draw do
 
   resources :checklist_templates do
     resources :template_items, only: %i[create update destroy]
-    member do
-      post :create_checklist
-    end
   end
 
   # Item states
