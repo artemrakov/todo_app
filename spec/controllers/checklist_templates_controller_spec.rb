@@ -44,7 +44,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
           sign_in user
           expect do
             post :create, params: { checklist_template: checklist_template_params }
-          end.to change(ChecklistTemplate, :count).by(1)
+          end.to change(user.reload.checklist_templates, :count).by(1)
         end
       end
 
@@ -54,7 +54,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
           sign_in user
           expect do
             post :create, params: { checklist_template: checklist_template_params }
-          end.to_not change(ChecklistTemplate, :count)
+          end.to_not change(user.reload.checklist_templates, :count)
         end
       end
     end

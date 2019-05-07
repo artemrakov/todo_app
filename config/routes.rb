@@ -7,11 +7,8 @@ Rails.application.routes.draw do
   end
 
   namespace :checklist_templates do
-<<<<<<< HEAD
     resource :user, only: :show
-=======
     resource :search, only: :show
->>>>>>> 2bb021ab410d824afc3ee238efeaff91316383d5
   end
 
   resources :checklist_templates do
