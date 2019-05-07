@@ -1,7 +1,7 @@
 .container
   %h1= t('views.checklist_templates.show.title')
   %h2= @checklist_template.title
-  %h2= t('views.checklist_templates.show.tags') + ' ' + @checklist_template.tag_list.join(', ')
+  %h3= t('views.checklist_templates.show.tags') + @checklist_template.tag_show
   %ul
     - @template_items.each do |template_item|
       %li
