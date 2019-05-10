@@ -13,9 +13,17 @@ class ChecklistsController < ApplicationController
   end
 
   def create
-    checklist_template = ChecklistTemplateCreator.new(
-      checklist: checklist_params, checklist_template: checklist_template_params
+    checklist_service = ChecklistAndTemplateChecklistCreator.new(
+      checklist: checklist_params,
+      checklist_template: checklist_template_params,
+      user: current_user
     )
+
+    if checklist_service.save
+      redirect_to checklist_path(checklist_service.checklist), notice: t('checklist.success_create')
+    else
+      redirect_to new_checklist_path, notice: t('checklist.fail_create')
+    end
   end
 
   def update

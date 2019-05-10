@@ -2,6 +2,10 @@ class ItemsController < ApplicationController
   before_action :find_checklist, only: %i[create]
   before_action :find_item, only: %i[update destroy]
 
+  def create
+    # item_creator = ItemCreator.new(item_params, current_user,)
+  end
+
   def update
     if @item.update(item_params)
       redirect_to checklist_path(@item.checklist), notice: t('item.success_update')
