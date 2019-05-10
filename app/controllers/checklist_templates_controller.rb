@@ -22,19 +22,6 @@ class ChecklistTemplatesController < ApplicationController
     @template_items = @checklist_template.template_items
   end
 
-  # def create_checklist
-  #   @checklist_form = ChecklistForm.new(
-  #     user: current_user,
-  #     checklist_template: @checklist_template,
-  #     title: @checklist_template.title
-  #   )
-  #   if @checklist_form.save
-  #     redirect_to checklist_path(@checklist_form.checklist)
-  #   else
-  #     redirect_to checklist_templates(@checklist_template)
-  #   end
-  # end
-
   private
 
   def find_checklist_template
