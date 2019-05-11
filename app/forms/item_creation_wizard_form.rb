@@ -1,3 +1,4 @@
+# It creates item and template item if user is owner of checklist template
 class ItemCreationWizardForm
   include ActiveModel::Model
 

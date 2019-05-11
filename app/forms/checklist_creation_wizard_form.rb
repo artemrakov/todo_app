@@ -1,3 +1,5 @@
+# When user want to create checklist throw checklist_controller
+# it creates checklist template and checklist
 class ChecklistCreationWizardForm
   include ActiveModel::Model
 
