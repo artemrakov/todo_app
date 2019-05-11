@@ -13,14 +13,11 @@ class ChecklistsController < ApplicationController
   end
 
   def create
-    checklist_service = ChecklistAndTemplateChecklistCreator.new(
-      checklist: checklist_params,
-      checklist_template: checklist_template_params,
-      user: current_user
-    )
+    checklist_template = checklist_template_params.merge(checklist_params)
+    checklist_form = ChecklistCreationWizardForm.new(checklist_template, current_user)
 
-    if checklist_service.save
-      redirect_to checklist_path(checklist_service.checklist), notice: t('checklist.success_create')
+    if checklist_form.save
+      redirect_to checklist_path(checklist_form.checklist), notice: t('checklist.success_create')
     else
       redirect_to new_checklist_path, notice: t('checklist.fail_create')
     end
@@ -53,6 +50,6 @@ class ChecklistsController < ApplicationController
   end
 
   def checklist_template_params
-    params.require(:checklist_template).permit(:one_time, :private)
+    params.require(:checklist_template).permit(:title, :one_time, :private)
   end
 end
