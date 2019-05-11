@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :checklists do
-    resources :items, only: %i[create update destroy]
+    resources :items, only: %i[new create update destroy]
   end
 
   resources :checklist_templates do

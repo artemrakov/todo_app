@@ -1,9 +1,19 @@
 class ItemsController < ApplicationController
-  before_action :find_checklist, only: %i[create]
+  before_action :find_checklist, only: %i[new create]
   before_action :find_item, only: %i[update destroy]
 
-  def create
+  def new
+    @item = Item.new
+  end
 
+  def create
+    item_form = ItemCreationWizardForm.new(item_params, @checklist)
+
+    if item_form.save
+      redirect_to checklist_path(item_form.checklist), notice: t('item.success_create')
+    else
+      redirect_to checklist_path(item_form.checklist), alert: t('item.fail_create')
+    end
   end
 
   def update
