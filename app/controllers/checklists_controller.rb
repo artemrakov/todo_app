@@ -1,5 +1,6 @@
 class ChecklistsController < ApplicationController
   before_action :find_checklist, only: %i[show update destroy]
+  before_action :find_checklist_template, only: :create
 
   def index
     @checklists = Checklist.all
@@ -40,6 +41,10 @@ class ChecklistsController < ApplicationController
   end
 
   private
+
+  def find_checklist_template
+    @checklist_template = ChecklistTemplate.find(params[:checklist_template_id])
+  end
 
   def find_checklist
     @checklist = Checklist.find(params[:id])

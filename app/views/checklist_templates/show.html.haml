@@ -1,6 +1,7 @@
 .container
   %h1= t('views.checklist_templates.show.title')
-  %h2 @checklist_template.title
+  %h2= @checklist_template.title
+  %h3= t('views.checklist_templates.show.tags') + @checklist_template.show_tags
   %ul
     - @template_items.each do |template_item|
       %li
@@ -11,7 +12,7 @@
 
   = render 'new_template_item_modal', checklist_template: @checklist_template, template_item: TemplateItem.new
 
-/ link_to t('views.checklist_templates.create.checklist'),
-/ create_checklist_checklist_template_path(@checklist_template), method: :post
+  / = link_to t('views.checklist_templates.create.checklist'),
+    / checklist_template_checklists_path(@checklist_template), method: :post
 
 
