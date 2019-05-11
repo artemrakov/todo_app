@@ -39,7 +39,6 @@ RSpec.describe ChecklistsController, type: :controller do
     # TODO: add pundit, create tests for unauthenticated user
   end
 
-
   describe '#update' do
     context 'as an authenticated user' do
       it 'updates a checklist' do
