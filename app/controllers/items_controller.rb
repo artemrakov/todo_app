@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item_form = ItemCreationWizardForm.new(item_params, @checklist)
+    item_form = ItemCreationWizard.new(item_params, @checklist)
 
     if item_form.save
       redirect_to checklist_path(item_form.checklist), notice: t('item.success_create')

@@ -1,5 +1,5 @@
 # It creates item and template item if user is owner of checklist template
-class ItemCreationWizardForm
+class ItemCreationWizard
   include ActiveModel::Model
 
   attr_accessor :title

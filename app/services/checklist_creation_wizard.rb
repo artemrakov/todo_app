@@ -1,7 +1,7 @@
 # When user want to create checklist throw checklist_controller
 # it creates checklist template and checklist
 class ChecklistCreationWizard
-  include ActiveModel::Validations
+  include ActiveModel::Model
 
   attr_reader :checklist_template
   attr_reader :user
