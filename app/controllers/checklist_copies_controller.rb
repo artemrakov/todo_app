@@ -1,6 +1,6 @@
 # coping checklist template and template items
 # and creating checklist with same items
-class CopyChecklistsController < ApplicationController
+class ChecklistCopiesController < ApplicationController
   before_action :find_checklist_template
 
   def create
@@ -12,7 +12,7 @@ class CopyChecklistsController < ApplicationController
     if @checklist_form.save
       redirect_to checklist_path(@checklist_form.checklist)
     else
-      redirect_to checklist_templates(@checklist_template)
+      redirect_to checklist_templates_path(@checklist_template)
     end
   end
 

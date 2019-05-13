@@ -1,6 +1,5 @@
 class ChecklistsController < ApplicationController
   before_action :find_checklist, only: %i[show update destroy]
-  before_action :find_checklist_template, only: :create
 
   def index
     @checklists = Checklist.all
@@ -14,8 +13,7 @@ class ChecklistsController < ApplicationController
   end
 
   def create
-    checklist_template = checklist_template_params.merge(checklist_params)
-    checklist_form = ChecklistCreationWizardForm.new(checklist_template, current_user)
+    checklist_form = ChecklistCreationWizard.new(checklist_template_params, checklist_params, current_user)
 
     if checklist_form.save
       redirect_to checklist_path(checklist_form.checklist), notice: t('checklist.success_create')

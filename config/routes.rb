@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :checklist_templates do
     resources :template_items, only: %i[create update destroy]
-    resource :copy_checklist, only: %i[create]
+    resource :checklist_copy, only: %i[create]
   end
 
   # Item states
