@@ -23,13 +23,11 @@ en:
       delete:
         title: 'Delete'
     checklist_templates:
-      searches:
-        show:
-          title: 'Results found:'
       show:
         title: 'Checklist template'
         tags: 'Tags: '
       index:
+        search: 'Results found: '
         title: 'All checklist templates'
       create:
         title: 'Create checklist template'

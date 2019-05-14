@@ -1,5 +1,5 @@
 .container
   %h1= t('views.pages.home.title')
-  = form_tag checklist_templates_search_path, method: :get do
+  = form_tag checklist_templates_path, method: :get do
     = text_field_tag :search
     = submit_tag 'Search', class: 'btn btn-primary'
