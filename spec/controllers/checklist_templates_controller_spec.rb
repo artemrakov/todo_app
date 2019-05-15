@@ -13,12 +13,6 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
         expect(response).to have_http_status '200'
       end
 
-      it 'uses view model' do
-        sign_in user
-        expect(ChecklistTemplateCollectionView).to receive(:new)
-        get :index
-      end
-
       it 'searches by the provided keyword' do
         sign_in user
         expect(checklist_template_class).to receive(:search)

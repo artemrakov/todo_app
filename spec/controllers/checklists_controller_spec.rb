@@ -12,12 +12,6 @@ RSpec.describe ChecklistsController, type: :controller do
         get :index
         expect(response).to have_http_status '200'
       end
-
-      it 'uses view model' do
-        sign_in user
-        expect(ChecklistCollectionView).to receive(:new)
-        get :index
-      end
     end
 
     context 'as a guest' do
