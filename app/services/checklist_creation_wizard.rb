@@ -11,7 +11,7 @@ class ChecklistCreationWizard
   validates :title, presence: true, length: { maximum: 100 }
   validates :user, presence: true
   validates :checklist, presence: true
-  validates :checklist_templates, presence: true
+  validates :checklist_template, presence: true
 
   def initialize(checklist_params, checklist_template_params, user)
     all_params = checklist_params.merge(checklist_template_params)

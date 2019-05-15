@@ -13,7 +13,7 @@ class ChecklistsController < ApplicationController
   end
 
   def create
-    checklist_form = ChecklistCreationWizard.new(checklist_template_params, checklist_params, current_user)
+    checklist_form = ChecklistCreationWizard.new(checklist_params, checklist_template_params, current_user)
 
     if checklist_form.save
       redirect_to checklist_path(checklist_form.checklist), notice: t('checklist.success_create')

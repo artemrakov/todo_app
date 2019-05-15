@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_135104) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "usage", default: "multiple", null: false
+    t.boolean "one_time", default: false
     t.boolean "private", default: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_checklist_templates_on_user_id"
