@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ChecklistTemplatesController, type: :controller do
   let(:user) { create(:user) }
   let(:checklist_template) { create(:checklist_template) }
+  let(:checklist_template_class) { class_double("ChecklistTemplate").as_stubbed_const }
 
   describe '#index' do
     context 'as an authenticated user' do
@@ -14,8 +15,14 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
 
       it 'uses view model' do
         sign_in user
-        expect(ChecklistTemplatePaginationView).to receive(:new)
+        expect(ChecklistTemplateCollectionView).to receive(:new)
         get :index
+      end
+
+      it 'searches by the provided keyword' do
+        sign_in user
+        expect(checklist_template_class).to receive(:search)
+        get :index, params: { search: 'sport' }
       end
     end
 
@@ -61,19 +68,6 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
           expect do
             post :create, params: { checklist_template: checklist_template_params }
           end.to_not change(ChecklistTemplate, :count)
-        end
-      end
-    end
-  end
-
-  describe '#create_checklist' do
-    context 'as an authenticated user' do
-      context 'with valid attributes' do
-        it 'creates checklist' do
-          sign_in user
-          expect do
-            post :create_checklist, params: { id: checklist_template.id }
-          end.to change(user.checklists, :count).by(1)
         end
       end
     end

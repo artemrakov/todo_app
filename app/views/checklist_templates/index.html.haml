@@ -1,8 +1,8 @@
 .container
-  %h1= t('views.checklist_templates.index.title')
+  %h1= @checklist_template_view.collection_title
   %ul
     - @checklist_template_view.checklist_templates.each do |template|
       %li= link_to template.title, checklist_template_path(template)
 
-  = pagy_bootstrap_nav(@checklist_template_view.pagination).html_safe
+  = will_paginate @checklist_template_view.checklist_templates, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
   = link_to t('views.checklist_templates.create.title'), new_checklist_template_path

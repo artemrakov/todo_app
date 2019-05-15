@@ -15,9 +15,12 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-gem 'pagy'
 gem 'haml'
+gem 'will_paginate-bootstrap4'
 gem 'aasm'
+gem 'acts-as-taggable-on', '~> 6.0'
+gem 'searchkick'
+gem 'draper'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
