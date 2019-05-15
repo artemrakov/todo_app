@@ -15,7 +15,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
 
       it 'searches by the provided keyword' do
         sign_in user
-        expect(checklist_template_class).to receive(:search).with('sport')
+        expect(checklist_template_class).to receive(:search)
         get :index, params: { search: 'sport' }
       end
     end
