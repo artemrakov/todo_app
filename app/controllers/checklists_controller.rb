@@ -3,7 +3,7 @@ class ChecklistsController < ApplicationController
   before_action :find_checklist_template, only: :create
 
   def index
-    @checklist_view = ChecklistCollectionView.new(params)
+    @checklists = Checklist.paginate(page: params[:page])
   end
 
   def show
