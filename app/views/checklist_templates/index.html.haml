@@ -4,5 +4,6 @@
     - @checklist_template_view.checklist_templates.each do |template|
       %li= link_to template.title, checklist_template_path(template)
 
-  = will_paginate @checklist_template_view.checklist_templates, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  = will_paginate @checklist_template_view.checklist_templates,
+    renderer: WillPaginate::ActionView::BootstrapLinkRenderer
   = link_to t('views.checklist_templates.create.title'), new_checklist_template_path
