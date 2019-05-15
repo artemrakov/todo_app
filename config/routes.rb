@@ -7,12 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :items, only: [] do
-    resource :complete, only: :create
-    resource :undo, only: :create
-  end
-
-  namespace :checklist_templates do
-    resource :search, only: :show
+    resource :item_resolutions, only: [:create, :destroy]
   end
 
   resources :checklist_templates do

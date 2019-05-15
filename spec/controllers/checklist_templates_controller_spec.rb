@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ChecklistTemplatesController, type: :controller do
   let(:user) { create(:user) }
   let(:checklist_template) { create(:checklist_template) }
+  let(:checklist_template_class) { class_double("ChecklistTemplate").as_stubbed_const }
 
   describe '#index' do
     context 'as an authenticated user' do
@@ -10,6 +11,12 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
         sign_in user
         get :index
         expect(response).to have_http_status '200'
+      end
+
+      it 'searches by the provided keyword' do
+        sign_in user
+        expect(checklist_template_class).to receive(:search)
+        get :index, params: { search: 'sport' }
       end
     end
 
