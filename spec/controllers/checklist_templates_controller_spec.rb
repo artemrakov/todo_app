@@ -18,6 +18,12 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
         expect(checklist_template_class).to receive(:where).with(private: false)
         get :index
       end
+
+      it 'searches by the provided keyword' do
+        sign_in user
+        expect(checklist_template_class).to receive(:search)
+        get :index, params: { search: 'sport' }
+      end
     end
 
     context 'as a guest' do

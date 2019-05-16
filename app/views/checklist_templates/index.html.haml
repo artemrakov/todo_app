@@ -1,5 +1,11 @@
 .container
-  %h1= t('views.checklist_templates.index.title')
+  %h1= t('views.checklist_templates.index.search')
   %ul
+  - if @checklist_templates.any?
     - @checklist_templates.each do |template|
       %li= link_to template.title, checklist_template_path(template)
+  - else
+    %p Results not found
+
+  = will_paginate @checklist_templates, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  = link_to t('views.checklist_templates.create.title'), new_checklist_template_path

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_141153) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.boolean "private", default: false
+    t.string "visability", default: "everyone"
     t.index ["user_id"], name: "index_checklist_templates_on_user_id"
   end
 
