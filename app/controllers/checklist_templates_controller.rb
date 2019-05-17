@@ -2,7 +2,6 @@ class ChecklistTemplatesController < ApplicationController
   before_action :find_checklist_template, only: %i[show create_checklist]
 
   def index
-    # @checklist_templates = ChecklistTemplate.where(private: false)
     if params[:search].present?
       @checklist_templates = ChecklistTemplate.everyone.search(
         params[:search],

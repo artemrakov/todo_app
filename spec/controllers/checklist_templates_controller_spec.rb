@@ -15,13 +15,13 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
 
       it 'shows only public checklist templates' do
         sign_in user
-        expect(checklist_template_class).to receive(:where).with(private: false)
+        expect(checklist_template_class).to receive_message_chain(:everyone, :paginate)
         get :index
       end
 
       it 'searches by the provided keyword' do
         sign_in user
-        expect(checklist_template_class).to receive(:search)
+        expect(checklist_template_class).to receive_message_chain(:everyone, :search)
         get :index, params: { search: 'sport' }
       end
     end

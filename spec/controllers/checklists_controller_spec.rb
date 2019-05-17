@@ -4,7 +4,6 @@ RSpec.describe ChecklistsController, type: :controller do
   let(:user) { create(:user) }
   let!(:checklist) { create(:checklist, user: user) }
   let(:checklist_template) { create(:checklist_template) }
-  let(:checklist_class) { class_double("Checklist").as_stubbed_const }
 
   describe '#index' do
     context 'as an authenticated user' do
@@ -16,7 +15,8 @@ RSpec.describe ChecklistsController, type: :controller do
 
       it 'shows only users checklists' do
         sign_in user
-        expect(checklist_class).to receive(:where).with(user: user)
+        allow(controller).to receive(:current_user).and_return(user)
+        expect(user).to receive_message_chain(:checklists, :paginate)
         get :index
       end
     end
