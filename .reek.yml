@@ -1,0 +1,19 @@
+exclude_paths:
+  - 'bin'
+  - 'db'
+  - 'config'
+  - 'node_modules'
+  - 'script'
+  - 'support'
+  - 'tmp'
+  - 'test'
+
+detectors:
+  IrresponsibleModule:
+    enabled: false
+  Attribute:
+    enabled: false
+  InstanceVariableAssumption:
+    enabled: false
+  DuplicateMethodCall:
+    max_calls: 2

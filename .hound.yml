@@ -2,3 +2,5 @@ haml:
   config_file: .haml-lint.yml
 rubocop:
   config_file: .rubocop.yml
+reek:
+  config_file: .reek.yml
