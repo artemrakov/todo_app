@@ -4,9 +4,12 @@ class ChecklistTemplatesController < ApplicationController
   def index
     # @checklist_templates = ChecklistTemplate.where(private: false)
     if params[:search].present?
-      @checklist_templates = ChecklistTemplate.search(params[:search], page: params[:page])
+      @checklist_templates = ChecklistTemplate.everyone.search(
+        params[:search],
+        page: params[:page]
+      )
     else
-      @checklist_templates = ChecklistTemplate.paginate(page: params[:page])
+      @checklist_templates = ChecklistTemplate.everyone.paginate(page: params[:page])
     end
   end
 

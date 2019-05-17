@@ -3,19 +3,22 @@ require 'rails_helper'
 RSpec.describe ChecklistTemplates::UsersController, type: :controller do
   let(:user) { create(:user) }
   let(:checklist_template) { create(:checklist_template) }
-  let(:checklist_template_class) { class_double("ChecklistTemplate").as_stubbed_const }
+  let(:current_user) { double('current_user') }
 
   describe '#index' do
     context 'as an authenticated user' do
-      it 'responds successfully' do
+      before do
         sign_in user
+      end
+
+      it 'responds successfully' do
         get :show
         expect(response).to have_http_status '200'
       end
 
       it 'shows only users checklists templates' do
-        sign_in user
-        expect(checklist_template_class).to receive(:where).with(user: user)
+        allow(controller).to receive(:current_user).and_return(user)
+        expect(user).to receive(:checklist_templates)
         get :show
       end
     end
