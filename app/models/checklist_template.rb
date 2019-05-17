@@ -13,7 +13,7 @@ class ChecklistTemplate < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 100 }
 
-  aasm.attribute_name :visability
+  aasm.attribute_name :visibility
 
   aasm do
     state :everyone, initial: true
