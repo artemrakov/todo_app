@@ -12,6 +12,13 @@ RSpec.describe ChecklistsController, type: :controller do
         get :index
         expect(response).to have_http_status '200'
       end
+
+      it 'shows only users checklists' do
+        sign_in user
+        allow(controller).to receive(:current_user).and_return(user)
+        expect(user).to receive_message_chain(:checklists, :paginate)
+        get :index
+      end
     end
 
     context 'as a guest' do

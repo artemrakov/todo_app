@@ -3,9 +3,12 @@ class ChecklistTemplatesController < ApplicationController
 
   def index
     if params[:search].present?
-      @checklist_templates = ChecklistTemplate.search(params[:search], page: params[:page])
+      @checklist_templates = ChecklistTemplate.everyone.search(
+        params[:search],
+        page: params[:page]
+      )
     else
-      @checklist_templates = ChecklistTemplate.paginate(page: params[:page])
+      @checklist_templates = ChecklistTemplate.everyone.paginate(page: params[:page])
     end
   end
 
@@ -14,7 +17,7 @@ class ChecklistTemplatesController < ApplicationController
   end
 
   def create
-    @checklist_template = ChecklistTemplate.new(checklist_template_params)
+    @checklist_template = current_user.checklist_templates.build(checklist_template_params)
     if @checklist_template.save
       redirect_to checklist_template_path(@checklist_template), notice: t('checklist_template.success_create')
     else

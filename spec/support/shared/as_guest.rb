@@ -1,4 +1,6 @@
 RSpec.shared_examples_for 'as guest' do |args|
+  let(:params) { {} } if defined?(params).nil?
+
   it 'returns a 302 and redirects response' do
     send(args[:request], args[:method], params: params)
     expect(response).to have_http_status '302'
