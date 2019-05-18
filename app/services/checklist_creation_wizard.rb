@@ -16,7 +16,10 @@ class ChecklistCreationWizard
   def initialize(checklist_template_params, user)
     @user = user
     @title = checklist_template_params[:checklist][:title]
-    @checklist_template = user.checklist_templates.build(visibility: checklist_template_params[:visibility], title: @title)
+    @checklist_template = user.checklist_templates.build(
+      visibility: checklist_template_params[:visibility],
+      title: @title
+    )
     @checklist = user.checklists.build(checklist_template: @checklist_template, title: @title)
   end
 
