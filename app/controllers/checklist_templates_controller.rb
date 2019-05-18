@@ -5,7 +5,7 @@ class ChecklistTemplatesController < ApplicationController
     @checklist_templates = ChecklistTemplate.everyone.paginate(page: params[:page])
 
     keyword = params[:search]
-    @checklist_template = @checklist_templates.search(keyword) if keyword.present?
+    @checklist_templates = @checklist_templates.search(keyword) if keyword.present?
   end
 
   def new
