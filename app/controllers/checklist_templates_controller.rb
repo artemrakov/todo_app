@@ -2,7 +2,14 @@ class ChecklistTemplatesController < ApplicationController
   before_action :find_checklist_template, only: %i[show create_checklist]
 
   def index
-    @checklist_templates = ChecklistTemplate.all
+    if params[:search].present?
+      @checklist_templates = ChecklistTemplate.everyone.search(
+        params[:search],
+        page: params[:page]
+      )
+    else
+      @checklist_templates = ChecklistTemplate.everyone.paginate(page: params[:page])
+    end
   end
 
   def new

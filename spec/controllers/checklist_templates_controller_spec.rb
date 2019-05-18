@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ChecklistTemplatesController, type: :controller do
   let(:user) { create(:user) }
   let(:checklist_template) { create(:checklist_template) }
+  let(:checklist_template_class) { class_double("ChecklistTemplate").as_stubbed_const }
 
   describe '#index' do
     context 'as an authenticated user' do
@@ -10,6 +11,18 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
         sign_in user
         get :index
         expect(response).to have_http_status '200'
+      end
+
+      it 'shows only public checklist templates' do
+        sign_in user
+        expect(checklist_template_class).to receive_message_chain(:everyone, :paginate)
+        get :index
+      end
+
+      it 'searches by the provided keyword' do
+        sign_in user
+        expect(checklist_template_class).to receive_message_chain(:everyone, :search)
+        get :index, params: { search: 'sport' }
       end
     end
 
@@ -44,7 +57,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
           sign_in user
           expect do
             post :create, params: { checklist_template: checklist_template_params }
-          end.to change(ChecklistTemplate, :count).by(1)
+          end.to change(user.reload.checklist_templates, :count).by(1)
         end
       end
 
@@ -54,7 +67,7 @@ RSpec.describe ChecklistTemplatesController, type: :controller do
           sign_in user
           expect do
             post :create, params: { checklist_template: checklist_template_params }
-          end.to_not change(ChecklistTemplate, :count)
+          end.to_not change(user.reload.checklist_templates, :count)
         end
       end
     end

@@ -4,4 +4,10 @@
     - @checklists.each do |checklist|
       %li= link_to checklist.title, checklist_path(checklist)
 
+<<<<<<< HEAD
   = link_to t('views.checklists.create.title'), new_checklist_path
+=======
+  = will_paginate @checklists
+
+  = link_to t('views.checklists.create.title'), checklists_path, method: :post
+>>>>>>> ae263751305a472bb1e8308255160a978e566c81

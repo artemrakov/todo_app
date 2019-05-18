@@ -13,18 +13,23 @@ class ChecklistTemplate < ApplicationRecord
   acts_as_taggable
   searchkick
 
-  aasm.attribute_name :usage
+  aasm.attribute_name :visibility
 
   aasm do
-    state :multiple, initial: true
+    state :everyone, initial: true
+    state :owner
     state :one_time
 
-    event :singe_usage do
-      transitions from: :multiple, to: :one_time
+    event :to_public do
+      transitions from: %i[owner one_time], to: :everyone
     end
 
-    event :multiple_usage do
-      transitions from: :one_time, to: :multiple
+    event :to_private do
+      transitions from: %i[everyone one_time], to: :owner
+    end
+
+    event :to_one_time do
+      transitions from: %i[everyone owner], to: :one_time
     end
   end
 end

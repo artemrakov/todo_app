@@ -2,7 +2,7 @@ class ChecklistsController < ApplicationController
   before_action :find_checklist, only: %i[show update destroy]
 
   def index
-    @checklists = Checklist.all
+    @checklists = current_user.checklists.paginate(page: params[:page])
   end
 
   def show
