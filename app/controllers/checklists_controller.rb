@@ -9,12 +9,12 @@ class ChecklistsController < ApplicationController
   end
 
   def new
+    @checklist_template = ChecklistTemplate.new.decorate
     @checklist = Checklist.new
   end
 
   def create
-    checklist_form = ChecklistCreationWizard.new(checklist_params, checklist_template_params, current_user)
-
+    checklist_form = ChecklistCreationWizard.new(checklist_template_params, current_user)
     if checklist_form.save
       redirect_to checklist_path(checklist_form.checklist), notice: t('checklist.success_create')
     else
@@ -53,6 +53,6 @@ class ChecklistsController < ApplicationController
   end
 
   def checklist_template_params
-    params.require(:checklist_template).permit(:title, :one_time, :private)
+    params.require(:checklist_template).permit(:title, :visibility, checklist: [:title])
   end
 end

@@ -7,6 +7,7 @@ class ChecklistTemplate < ApplicationRecord
   has_many :checklists
   has_many :template_items
   belongs_to :user
+  accepts_nested_attributes_for :checklists
 
   validates :title, presence: true, length: { maximum: 100 }
 

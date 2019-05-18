@@ -34,6 +34,30 @@ RSpec.describe ChecklistsController, type: :controller do
     end
   end
 
+  describe '#create' do
+    context 'as an authenticated user' do
+      context 'with valid attributes' do
+        it 'adds a checklist and checklist_template' do
+          checklist_template_params = FactoryBot.attributes_for(:checklist_template, checklist: { title: 'hello' })
+          sign_in user
+          expect do
+            post :create, params: { checklist_template: checklist_template_params }
+          end.to change(user.reload.checklist_templates, :count).by(1)
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not add a checklist_template' do
+          checklist_template_params = FactoryBot.attributes_for(:checklist_template, :invalid, checklist: { title: '' })
+          sign_in user
+          expect do
+            post :create, params: { checklist_template: checklist_template_params }
+          end.to_not change(user.reload.checklist_templates, :count)
+        end
+      end
+    end
+  end
+
   describe '#show' do
     context 'as an authenticated user' do
       it 'responds successfully' do

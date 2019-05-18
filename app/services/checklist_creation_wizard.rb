@@ -13,11 +13,10 @@ class ChecklistCreationWizard
   validates :checklist, presence: true
   validates :checklist_template, presence: true
 
-  def initialize(checklist_params, checklist_template_params, user)
-    all_params = checklist_params.merge(checklist_template_params)
+  def initialize(checklist_template_params, user)
     @user = user
-    @title = checklist_params[:title]
-    @checklist_template = user.checklist_templates.build(all_params)
+    @title = checklist_template_params[:checklist][:title]
+    @checklist_template = user.checklist_templates.build(visibility: checklist_template_params[:visibility], title: @title)
     @checklist = user.checklists.build(checklist_template: @checklist_template, title: @title)
   end
 
