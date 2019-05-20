@@ -15,4 +15,4 @@ rvm:
 script:
   - bundle exec rake db:seed
   - bundle exec rspec
-  - bundle exec reek
+  - bundle exec reek --config .reek.yml
