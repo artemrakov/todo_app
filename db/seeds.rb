@@ -2,8 +2,8 @@ puts "Creating Users"
 3.times do |n|
   User.create!(email: Faker::Internet.email, password: 123123)
 end
-user_1 = User.first
-user_2 = User.second
+user_1 = User.last
+user_2 = User.second_to_last
 
 
 puts "Creating ChecklistTemplate"
