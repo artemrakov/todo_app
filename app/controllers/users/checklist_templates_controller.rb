@@ -1,4 +1,4 @@
-class User::ChecklistTemplatesController < ApplicationController
+class Users::ChecklistTemplatesController < ApplicationController
   def index
     @checklist_templates = user.checklist_templates
   end

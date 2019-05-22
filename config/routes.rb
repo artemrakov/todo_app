@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :checklist_templates, module: 'user', only: %i[index show]
+    resources :checklist_templates, module: 'users', only: %i[index show]
   end
 end
