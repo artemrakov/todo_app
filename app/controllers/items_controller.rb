@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :find_checklist, only: %i[create]
+  before_action :find_checklist, only: %i[new create]
   before_action :find_item, only: %i[update destroy]
+
+  def new
+    @item = Item.new
+  end
 
   def update
     if @item.update(item_params)
@@ -11,7 +15,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     if @item.destroy
       redirect_to checklist_path(@item.checklist), notice: t('item.success_destroy')
     else
