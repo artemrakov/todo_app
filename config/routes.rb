@@ -8,12 +8,12 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :checklist_templates do
-    resource :user, only: :show
-  end
-
   resources :checklist_templates do
     resources :template_items, only: %i[create update destroy]
     resource :checklist_copy, only: %i[create]
+  end
+
+  resources :users do
+    resources :checklist_templates, module: 'users', only: %i[index show]
   end
 end
