@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
   let(:user) { create(:user) }
-  let(:checklist) { create(:checklist, user: user) }
+  let(:checklist_template) { create(:checklist_template, user: user) }
+  let(:checklist) { create(:checklist, user: user, checklist_template: checklist_template) }
   let(:item) { create(:item, checklist: checklist) }
 
   describe '#update' do

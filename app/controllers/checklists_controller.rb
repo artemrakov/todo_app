@@ -1,6 +1,5 @@
 class ChecklistsController < ApplicationController
   before_action :find_checklist, only: %i[show update destroy]
-  before_action :find_checklist_template, only: :create
 
   def index
     @checklists = current_user.checklists.paginate(page: params[:page])
@@ -9,16 +8,17 @@ class ChecklistsController < ApplicationController
   def show
   end
 
+  def new
+    @checklist_template = ChecklistTemplate.new.decorate
+    @checklist = Checklist.new
+  end
+
   def create
-    @checklist_form = ChecklistForm.new(
-      user: current_user,
-      checklist_template: @checklist_template,
-      title: @checklist_template.title
-    )
-    if @checklist_form.save
-      redirect_to checklist_path(@checklist_form.checklist)
+    checklist_form = ChecklistCreationService.new(checklist_template_params, current_user)
+    if checklist_form.save
+      redirect_to checklist_path(checklist_form.checklist), notice: t('checklist.success_create')
     else
-      redirect_to checklist_templates_path(@checklist_template)
+      redirect_to new_checklist_path, notice: t('checklist.fail_create')
     end
   end
 
@@ -50,5 +50,9 @@ class ChecklistsController < ApplicationController
 
   def checklist_params
     params.require(:checklist).permit(:title)
+  end
+
+  def checklist_template_params
+    params.require(:checklist_template).permit(:title, :visibility, checklist: [:title])
   end
 end
