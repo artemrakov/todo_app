@@ -22,6 +22,8 @@ en:
         title: 'New item'
       delete:
         title: 'Delete'
+      update:
+        title: 'Edit item'
     checklist_templates:
       users:
         show:
