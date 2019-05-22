@@ -6,16 +6,6 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def create
-    item_form = ItemCreationWizard.new(item_params, @checklist)
-
-    if item_form.save
-      redirect_to checklist_path(item_form.checklist), notice: t('item.success_create')
-    else
-      redirect_to checklist_path(item_form.checklist), alert: t('item.fail_create')
-    end
-  end
-
   def update
     if @item.update(item_params)
       redirect_to checklist_path(@item.checklist), notice: t('item.success_update')
