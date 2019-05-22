@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resource :checklists, only: :create
   end
 
-  resource :users do
+  resource :users, only: %i[index show] do
     resources :checklist_templates, module: 'user'
   end
 end
