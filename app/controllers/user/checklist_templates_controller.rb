@@ -1,5 +1,11 @@
 class User::ChecklistTemplatesController < ApplicationController
   def index
-    @checklist_templates = current_user.checklist_templates
+    @checklist_templates = user.checklist_templates
+  end
+
+  private
+
+  def user
+    @user ||= User.find(params[:user_id])
   end
 end
