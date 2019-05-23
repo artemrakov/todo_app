@@ -4,3 +4,5 @@ rubocop:
   config_file: .rubocop.yml
 reek:
   config_file: .reek.yml
+eslint:
+  enabled: false
