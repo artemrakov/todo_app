@@ -13,6 +13,6 @@ language: ruby
 rvm:
   - 2.5.3
 script:
-  - bundle exec reek
+  - bundle exec reek -c .reek.yml
   - bundle exec rake db:seed
   - bundle exec rspec
