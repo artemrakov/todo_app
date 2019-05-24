@@ -19,6 +19,30 @@ RSpec.describe ItemsController, type: :controller do
     # TODO: add pundit, create tests for unauthenticated user
   end
 
+  describe '#create' do
+    context 'as an authenticated user' do
+      context 'with valid attributes' do
+        it 'adds item' do
+          item_params = FactoryBot.attributes_for(:item)
+          sign_in user
+          expect do
+            post :create, params: { checklist_id: checklist.id, item: item_params }
+          end.to change(checklist.reload.items, :count).by(1)
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not add a item' do
+          item_params = FactoryBot.attributes_for(:item, :invalid)
+          sign_in user
+          expect do
+            post :create, params: { checklist_id: checklist.id, item: item_params }
+          end.to_not change(checklist.reload.items, :count)
+        end
+      end
+    end
+  end
+
   describe '#destroy' do
     context 'as an authenticated user' do
       it 'delete a item' do

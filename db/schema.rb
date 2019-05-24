@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_195807) do
+ActiveRecord::Schema.define(version: 2019_05_24_133927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_195807) do
     t.bigint "template_item_id"
     t.string "state", default: "not_done", null: false
     t.datetime "due_date"
+    t.string "type"
     t.index ["checklist_id"], name: "index_items_on_checklist_id"
     t.index ["template_item_id"], name: "index_items_on_template_item_id"
   end

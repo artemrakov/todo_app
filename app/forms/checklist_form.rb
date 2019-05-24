@@ -24,7 +24,7 @@ class ChecklistForm
 
   def create_items
     checklist_template.template_items.each do |template_item|
-      checklist.items.build(template_item: template_item, title: template_item.title)
+      checklist.items.build(template_item: template_item, title: template_item.title, type: 'InheritedItem')
     end
   end
 end

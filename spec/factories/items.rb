@@ -3,7 +3,10 @@ FactoryBot.define do
     title { Faker::ProgrammingLanguage.name }
     state { "not_done" }
     association :checklist
-    association :template_item
+
+    trait :inherited do
+      association :template_item
+    end
 
     trait :complete do
       state { "done" }

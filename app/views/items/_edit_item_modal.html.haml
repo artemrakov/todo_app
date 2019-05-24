@@ -9,7 +9,7 @@
         %button.close{ type: "button", "data-dismiss" => "modal", "aria-label" => "Close" }
           %span{ "aria-hidden" => "true" } &times;
       .modal-body
-        = simple_form_for [checklist, item] do |f|
+        = simple_form_for [checklist, item.becomes(Item)] do |f|
           = f.input :title
           = f.input :due_date, as: :string, input_html: { class: 'datepicker' }
           = f.button :submit
