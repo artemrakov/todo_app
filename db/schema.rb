@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_05_24_133927) do
-=======
-ActiveRecord::Schema.define(version: 2019_05_07_141153) do
->>>>>>> parent of d751bad... added due_date to item and checklist
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,11 +41,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_141153) do
     t.bigint "checklist_id"
     t.bigint "template_item_id"
     t.string "state", default: "not_done", null: false
-<<<<<<< HEAD
-    t.datetime "due_date"
     t.string "type"
-=======
->>>>>>> parent of d751bad... added due_date to item and checklist
     t.index ["checklist_id"], name: "index_items_on_checklist_id"
     t.index ["template_item_id"], name: "index_items_on_template_item_id"
   end
