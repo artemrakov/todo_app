@@ -49,7 +49,7 @@ class ChecklistsController < ApplicationController
   end
 
   def checklist_params
-    params.require(:checklist).permit(:title, :due_date)
+    params.require(:checklist).permit(:title)
   end
 
   def checklist_template_params
