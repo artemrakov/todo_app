@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_133324) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "checklist_template_id"
-    t.datetime "due_date"
     t.index ["checklist_template_id"], name: "index_checklists_on_checklist_template_id"
     t.index ["user_id"], name: "index_checklists_on_user_id"
   end
@@ -42,7 +41,6 @@ ActiveRecord::Schema.define(version: 2019_05_26_133324) do
     t.bigint "checklist_id"
     t.bigint "template_item_id"
     t.string "state", default: "not_done", null: false
-    t.datetime "due_date"
     t.index ["checklist_id"], name: "index_items_on_checklist_id"
     t.index ["template_item_id"], name: "index_items_on_template_item_id"
   end
