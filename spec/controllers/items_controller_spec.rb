@@ -21,20 +21,29 @@ RSpec.describe ItemsController, type: :controller do
 
   describe '#create' do
     context 'as an authenticated user' do
+      before do
+        sign_in user
+      end
+
       context 'with valid attributes' do
         it 'adds item' do
-          item_params = FactoryBot.attributes_for(:item)
-          sign_in user
+          item_params = attributes_for(:item)
           expect do
             post :create, params: { checklist_id: checklist.id, item: item_params }
           end.to change(checklist.reload.items, :count).by(1)
+        end
+
+        it 'adds CustomItem' do
+          item_params = attributes_for(:item)
+          expect do
+            post :create, params: { checklist_id: checklist.id, item: item_params }
+          end.to change(CustomItem, :count).by(1)
         end
       end
 
       context 'with invalid attributes' do
         it 'does not add a item' do
-          item_params = FactoryBot.attributes_for(:item, :invalid)
-          sign_in user
+          item_params = attributes_for(:item, :invalid)
           expect do
             post :create, params: { checklist_id: checklist.id, item: item_params }
           end.to_not change(checklist.reload.items, :count)
