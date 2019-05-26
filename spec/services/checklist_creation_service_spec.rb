@@ -1,6 +1,3 @@
-# params.require(:checklist_template).permit(:title, :visibility, checklist: [:title])
-#     checklist_form = ChecklistCreationService.new(checklist_template_params, current_user)
-
 require 'rails_helper'
 
 RSpec.describe ChecklistCreationService do
