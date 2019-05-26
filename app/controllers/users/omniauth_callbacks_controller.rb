@@ -1,6 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-    user = find_for_facebook_oauth(auth)
+    user = find_for_facebook_oauth
 
     if user.persisted?
       sign_in_and_redirect user, event: :authentication
@@ -13,7 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-  def find_for_facebook_oauth(auth)
+  def find_for_facebook_oauth
     user = User.find_by(provider: auth.provider, uid: auth.uid)
     user ||= User.find_by(email: auth.info.email)
     if user
