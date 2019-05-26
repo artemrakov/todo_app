@@ -44,7 +44,6 @@ RSpec.describe ChecklistCreationService do
 
     let(:checklist_creation_service) { ChecklistCreationService.new(invalid_params, user) }
 
-
     it 'does not creates a checklist' do
       expect do
         checklist_creation_service.save
@@ -56,6 +55,5 @@ RSpec.describe ChecklistCreationService do
         checklist_creation_service.save
       end.to_not change(ChecklistTemplate, :count)
     end
-
   end
 end
