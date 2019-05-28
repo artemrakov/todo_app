@@ -73,6 +73,8 @@ GEM
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       xpath (~> 3.1)
+    clockwork (2.0.3)
+      tzinfo
     codeclimate-engine-rb (0.4.1)
       virtus (~> 1.0)
     coderay (1.1.2)
@@ -306,6 +308,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootsnap
   capybara
+  clockwork
   database_cleaner
   devise
   dotenv-rails
