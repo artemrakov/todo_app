@@ -1,0 +1,16 @@
+%a{ href: "#", "data-toggle" => "modal", "data-target" => "#item_#{item.id}" }= t('edit_button')
+
+.modal.fade{ id: "item_#{item.id}", tabindex: "-1",
+    role: "dialog", "aria-labelledby" => "exampleModalLabel", "aria-hidden" => "true" }
+  .modal-dialog{ role: "document" }
+    .modal-content
+      .modal-header
+        %h5.modal-title=  t('view.items.update.title')
+        %button.close{ type: "button", "data-dismiss" => "modal", "aria-label" => "Close" }
+          %span{ "aria-hidden" => "true" } &times;
+      .modal-body
+        = simple_form_for [checklist, item.becomes(Item)] do |f|
+          = f.input :title
+          = f.button :submit
+      .modal-footer
+        %button.btn.btn-secondary{ type: "button", "data-dismiss" => "modal" }= t('button.close')

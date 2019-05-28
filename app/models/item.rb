@@ -3,7 +3,6 @@ class Item < ApplicationRecord
   include AASM
 
   belongs_to :checklist
-  belongs_to :template_item
 
   validates :title, presence: true, length: { maximum: 100 }
 

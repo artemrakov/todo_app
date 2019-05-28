@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :checklists do
-    resources :items, only: %i[new update destroy] do
+    resources :items, only: %i[new create update destroy] do
       resource :item_resolutions, only: [:create, :destroy]
     end
   end

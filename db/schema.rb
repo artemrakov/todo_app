@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_05_26_133324) do
     t.bigint "checklist_id"
     t.bigint "template_item_id"
     t.string "state", default: "not_done", null: false
+    t.string "type", default: "", null: false
     t.index ["checklist_id"], name: "index_items_on_checklist_id"
     t.index ["template_item_id"], name: "index_items_on_template_item_id"
   end
