@@ -1,0 +1,2 @@
+class CustomItem < Item
+end
