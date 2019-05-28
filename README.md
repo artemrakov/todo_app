@@ -12,4 +12,4 @@ The our version of gem works with Elasticsearch 6 and 7.
 
 ### Facebook login
 
-In order to use facebook login locally. You need to add FB_ID and FB_SECRET to enivironment the example of which you can find in `.env.example`
+In order to use facebook login locally. You need to add FB_ID and FB_SECRET to environment the example of which you can find in `.env.example`
