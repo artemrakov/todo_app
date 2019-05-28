@@ -28,7 +28,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def user_params
     @user_params ||= {
-      facebook_picture_url: "https://graph.facebook.com/#{auth.uid}/picture?type=square",
+      facebook_picture_url: auth.info.image,
       token: auth.credentials.token,
       token_expiry: Time.at(auth.credentials.expires_at),
       email: auth.info.email,
