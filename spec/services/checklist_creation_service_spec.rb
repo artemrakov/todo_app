@@ -44,7 +44,6 @@ RSpec.describe ChecklistCreationService do
     it { expect(errors).to include :title }
     it { is_expected.to_not be_valid }
 
-
     it 'does not creates a checklist' do
       expect do
         subject.save
