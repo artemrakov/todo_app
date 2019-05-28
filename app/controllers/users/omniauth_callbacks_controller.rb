@@ -14,8 +14,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def find_for_facebook_oauth
-    user = User.find_by(provider: auth.provider, uid: auth.uid)
-    user ||= User.find_by(email: auth.info.email)
+    user = User.find_by(provider: auth.provider, uid: auth.uid) || User.find_by(email: auth.info.email)
     if user
       user.update(user_params)
     else
