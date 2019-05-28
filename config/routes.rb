@@ -3,17 +3,17 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :checklists do
-    resources :items, only: %i[new update destroy] do
+    resources :items, only: %i[new create update destroy] do
       resource :item_resolutions, only: [:create, :destroy]
     end
-  end
-
-  namespace :checklist_templates do
-    resource :user, only: :show
   end
 
   resources :checklist_templates do
     resources :template_items, only: %i[create update destroy]
     resource :checklist_copy, only: %i[create]
+  end
+
+  resources :users do
+    resources :checklist_templates, module: 'users', only: %i[index show]
   end
 end

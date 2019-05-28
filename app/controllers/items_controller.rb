@@ -6,6 +6,16 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def create
+    @item = @checklist.items.build(item_params_for_create)
+
+    if @item.save
+      redirect_to checklist_path(@item.checklist), notice: t('item.success_create')
+    else
+      redirect_to checklist_path(@item.checklist), alert: t('item.fail_create')
+    end
+  end
+
   def update
     if @item.update(item_params)
       redirect_to checklist_path(@item.checklist), notice: t('item.success_update')
@@ -34,5 +44,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:title, :due_date)
+  end
+
+  def item_params_for_create
+    item_params.merge(type: 'CustomItem')
   end
 end
