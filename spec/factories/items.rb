@@ -6,7 +6,12 @@ FactoryBot.define do
     association :checklist
 
     trait :inherited do
+      type { "InheritedItem" }
       association :template_item
+    end
+
+    trait :custom do
+      type { "CustomItem" }
     end
 
     trait :complete do

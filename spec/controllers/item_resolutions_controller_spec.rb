@@ -5,11 +5,15 @@ RSpec.describe ItemResolutionsController, type: :controller do
   let(:checklist) { create(:checklist) }
   let(:item) { create(:item) }
   let(:item_done) { create(:item, :complete) }
+  let(:custom_item) { create(:item, :custom) }
 
   describe '#create' do
     context 'as an authenticated user' do
-      it 'changes status of the item to done' do
+      before do
         sign_in user
+      end
+
+      it 'changes status of the item to done' do
         post :create, params: { item_id: item.id, checklist_id: checklist.id }
         expect(item.reload.state).to eq 'done'
       end
