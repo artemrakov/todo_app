@@ -262,7 +262,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"],
                   scope: 'email',
-                  info_fileds: 'email, name',
+                  info_fileds: 'email, first_name, last_name',
                   image_size: 'square',
                   secure_image_url: true
 
