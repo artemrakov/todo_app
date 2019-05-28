@@ -3,7 +3,7 @@ require_relative '../config/boot'
 require_relative '../config/environment'
 
 module Clockwork
-  every(30.seconds, 'SendReminderJob') do
+  every(1.day, 'SendReminderJob') do
     ReminderJob.perform_later
   end
 end
