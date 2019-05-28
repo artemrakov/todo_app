@@ -1,5 +1,6 @@
 - if item.not_done?
-  = simple_form_for [checklist, item.becomes(Item)], url: checklist_item_item_resolutions_path(checklist, item), method: :post do |f|
+  = simple_form_for [checklist, item.becomes(Item)],
+  url: checklist_item_item_resolutions_path(checklist, item), method: :post do |f|
     = f.check_box :state, checked: item.done?
 - else
   = simple_form_for [checklist, item.becomes(Item)],
