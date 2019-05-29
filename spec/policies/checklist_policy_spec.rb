@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ChecklistPolicy do
-
   let(:user) { User.new }
 
   subject { described_class }
-
 
   permissions :show? do
     pending "add some examples to (or delete) #{__FILE__}"
