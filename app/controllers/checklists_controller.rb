@@ -6,15 +6,18 @@ class ChecklistsController < ApplicationController
   end
 
   def show
+    authorize @checklist
   end
 
   def new
     @checklist_template = ChecklistTemplate.new.decorate
     @checklist = Checklist.new
+    authorize @checklist
   end
 
   def create
     checklist_form = ChecklistCreationService.new(checklist_template_params, current_user)
+    authorize checklist_form.checklist
     if checklist_form.save
       redirect_to checklist_path(checklist_form.checklist), notice: t('checklist.success_create')
     else
@@ -23,6 +26,7 @@ class ChecklistsController < ApplicationController
   end
 
   def update
+    authorize @checklist
     if @checklist.update(checklist_params)
       redirect_to checklist_path(@checklist), notice: t('checklist.success_update')
     else
@@ -31,6 +35,7 @@ class ChecklistsController < ApplicationController
   end
 
   def destroy
+    authorize @checklist
     if @checklist.destroy
       redirect_to checklists_path, notice: t('checklist.success_destroy')
     else
