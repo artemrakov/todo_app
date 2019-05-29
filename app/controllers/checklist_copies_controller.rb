@@ -9,6 +9,7 @@ class ChecklistCopiesController < ApplicationController
       checklist_template: @checklist_template,
       title: @checklist_template.title
     )
+    authorize @checklist_form.checklist
     if @checklist_form.save
       redirect_to checklist_path(@checklist_form.checklist)
     else
