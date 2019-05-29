@@ -7,7 +7,6 @@ class ItemResolutionsController < ApplicationController
 
   def destroy
     authorize item, :update?
-    binding.pry
     item.undo!
     redirect_to checklist_path(@item.checklist), alert: t('item.success_update')
   end

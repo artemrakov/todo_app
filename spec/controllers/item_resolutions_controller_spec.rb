@@ -5,7 +5,7 @@ RSpec.describe ItemResolutionsController, type: :controller do
   let(:other_user) { create(:user) }
   let(:checklist) { create(:checklist, user: user) }
   let(:item) { create(:item, checklist: checklist) }
-  let!(:item_done) { create(:item, :complete, checklist: checklist) }
+  let(:item_done) { create(:item, :complete, checklist: checklist) }
   let(:custom_item) { create(:item, :custom, checklist: checklist) }
 
   describe '#create' do
@@ -40,12 +40,12 @@ RSpec.describe ItemResolutionsController, type: :controller do
     end
   end
 
-  describe '#delete' do
+  describe '#destroy' do
     context 'as an authenticated user' do
       it 'changes status of item to not_done' do
         sign_in user
         delete :destroy, params: { item_id: item_done.id, checklist_id: checklist.id }
-        expect(item.reload.state).to eq 'not_done'
+        expect(item_done.reload.state).to eq 'not_done'
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe ItemResolutionsController, type: :controller do
       it 'does not changes status of item' do
         sign_in other_user
         delete :destroy, params: { item_id: item_done.id, checklist_id: checklist.id }
-        expect(item.reload.state).to_not eq 'not_done'
+        expect(item_done.reload.state).to_not eq 'not_done'
       end
     end
 
