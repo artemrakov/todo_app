@@ -74,6 +74,7 @@ en:
     success_update: 'Item successfully updated!'
     fail_update: 'Failed to update'
     success_destroy: 'Item successfully destroyed'
+    fail_destroy: 'Failed to destroy Item'
     success_create: 'Item successfully created!'
     fail_create: "Couldn't create an Item"
 

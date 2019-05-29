@@ -3,11 +3,13 @@ class ItemsController < ApplicationController
   before_action :find_item, only: %i[update destroy]
 
   def new
-    @item = Item.new
+    @item = Item.new(checklist: @checklist)
+    authorize @item
   end
 
   def create
     @item = @checklist.items.build(item_params_for_create)
+    authorize @item
 
     if @item.save
       redirect_to checklist_path(@item.checklist), notice: t('item.success_create')
@@ -17,6 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+    authorize @item
     if @item.update(item_params)
       redirect_to checklist_path(@item.checklist), notice: t('item.success_update')
     else
