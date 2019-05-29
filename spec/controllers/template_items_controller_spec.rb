@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TemplateItemsController, type: :controller do
   let(:user) { create(:user) }
-  let(:checklist_template) { create(:checklist_template) }
+  let(:checklist_template) { create(:checklist_template, user: user) }
   let(:template_item) { create(:template_item, checklist_template: checklist_template) }
 
   describe '#create' do

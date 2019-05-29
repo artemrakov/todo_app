@@ -28,6 +28,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    authorize @item
     if @item.destroy
       redirect_to checklist_path(@item.checklist), notice: t('item.success_destroy')
     else
