@@ -37,7 +37,7 @@ en:
         title: 'All Checklist templates'
       create:
         title: 'Create checklist template'
-        checklist: 'Create checklist from this template'
+        checklist: 'Use'
       delete:
         title: 'Delete'
     template_items:
