@@ -4,6 +4,8 @@ class TemplateItemsController < ApplicationController
 
   def create
     @template_item = @checklist_template.template_items.build(template_item_params)
+    authorize @template_item
+
     if @template_item.save
       redirect_to checklist_template_path(@checklist_template), notice: t('template_item.success_create')
     else
@@ -12,6 +14,7 @@ class TemplateItemsController < ApplicationController
   end
 
   def update
+    authorize @template_item
     if @template_item.update(template_item_params)
       redirect_to checklist_template_path(@template_item.checklist_template), notice: t('template_item.success_update')
     else
@@ -20,6 +23,7 @@ class TemplateItemsController < ApplicationController
   end
 
   def destroy
+    authorize @template_item
     if @template_item.destroy
       redirect_to checklist_template_path(@template_item.checklist_template), notice: t('template_item.success_destroy')
     else

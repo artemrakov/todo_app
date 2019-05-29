@@ -26,6 +26,7 @@ class ChecklistTemplatesController < ApplicationController
   def show
     authorize @checklist_template
     @template_items = @checklist_template.template_items
+    @template_item = TemplateItem.new(checklist_template: @checklist_template)
   end
 
   private

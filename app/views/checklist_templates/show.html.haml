@@ -6,11 +6,9 @@
     - @template_items.each do |template_item|
       %li
         = template_item.title
-        = link_to t('views.checklist_templates.delete.title'),
-          checklist_template_template_item_path(@checklist_template, template_item),
-          method: :delete, data: { confirm: t('confirmation') }
+        = delete_template_link(@checklist_template, template_item)
 
-  = render 'new_template_item_modal', checklist_template: @checklist_template, template_item: TemplateItem.new
+  = render 'new_template_item_modal', checklist_template: @checklist_template, template_item: @template_item if policy(@template_item).new?
 
   %p
     = link_to t('views.checklist_templates.create.checklist'),
