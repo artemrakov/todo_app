@@ -22,6 +22,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'searchkick'
 gem 'draper'
 gem 'omniauth-facebook'
+gem 'react-rails', '~> 1.0'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
