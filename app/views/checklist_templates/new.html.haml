@@ -2,5 +2,5 @@
   = simple_form_for @checklist_template do |f|
     = f.input :title
     = f.input :visibility
-    = f.input :tag_list
+    = f.input :tag_list, input_html: { class: 'tag_list', value: @checklist_template.show_tags }
     = f.submit
