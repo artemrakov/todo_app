@@ -1,19 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe ChecklistTemplatePolicy do
-  let(:user) { User.new }
+  let(:user) { create(:user) }
+  let(:checklist_template) { create(:checklist_template) }
 
   subject { described_class }
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  permissions :new?, :show?, :create? do
+    it 'grants access to everybody' do
+      expect(subject).to permit(user, checklist_template)
+    end
   end
 end
