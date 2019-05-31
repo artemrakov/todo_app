@@ -9,15 +9,15 @@ class ChecklistTemplatesController < ApplicationController
   end
 
   def new
-    @checklist_template = ChecklistTemplate.new
+    @checklist_template = ChecklistTemplate.new.decorate
   end
 
   def create
-    @checklist_template = current_user.checklist_templates.build(checklist_template_params)
+    @checklist_template = current_user.checklist_templates.build(checklist_template_params).decorate
     if @checklist_template.save
       redirect_to checklist_template_path(@checklist_template), notice: t('checklist_template.success_create')
     else
-      redirect_to checklist_templates_path, alert: t('checklist_template.fail_create')
+      render :new, alert: t('checklist_template.fail_create')
     end
   end
 
