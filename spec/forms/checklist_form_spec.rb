@@ -27,7 +27,7 @@ RSpec.describe ChecklistForm do
 
     it 'has same number of items' do
       subject.save
-      expect(subject.checklist.items).to eq checklist_template.template_items
+      expect(subject.checklist.items.size).to eq checklist_template.template_items.size
     end
   end
 
