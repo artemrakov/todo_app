@@ -75,6 +75,9 @@ GEM
       xpath (~> 3.1)
     clockwork (2.0.3)
       tzinfo
+    clockwork-test (0.3.0)
+      clockwork
+      timecop
     codeclimate-engine-rb (0.4.1)
       virtus (~> 1.0)
     coderay (1.1.2)
@@ -296,6 +299,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
+    timecop (0.9.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.20)
@@ -335,6 +339,7 @@ DEPENDENCIES
   bootsnap
   capybara
   clockwork
+  clockwork-test
   database_cleaner
   devise
   dotenv-rails

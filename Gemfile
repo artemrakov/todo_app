@@ -34,6 +34,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'clockwork-test'
 end
 
 group :development, :test do
