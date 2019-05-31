@@ -1,0 +1,10 @@
+.selectize-control {
+  padding: 0 !important;
+}
+.selectize-input {
+  border-radius: 0 !important;
+  border: 0 !important;
+}
+.selectize-control.multi .selectize-input > div {
+  padding: 3px 6px !important;
+}

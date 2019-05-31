@@ -4,3 +4,7 @@ rubocop:
   config_file: .rubocop.yml
 reek:
   config_file: .reek.yml
+jshint:
+  enabled: false
+scss:
+  enabled: false
