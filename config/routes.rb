@@ -2,6 +2,10 @@ Rails.application.routes.draw do
    devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   resources :checklists do
     resources :items, only: %i[new create update destroy] do

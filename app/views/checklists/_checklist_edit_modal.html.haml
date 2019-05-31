@@ -1,14 +1,17 @@
-.modal.fade{ id: "edit-checklist", tabindex: "-1",
+%a{ href: "#", "data-toggle" => "modal", "data-target" => "#checklist" }= t('edit_button')
+
+.modal.fade{ id: "checklist", tabindex: "-1",
     role: "dialog", "aria-labelledby" => "exampleModalLabel", "aria-hidden" => "true" }
-  .modal-dialgo{ role: "document" }
+  .modal-dialog{ role: "document" }
     .modal-content
       .modal-header
-        %h5.modal-title= t('view.checklists.show.title')
+        %h5.modal-title=  t('view.checklists.show.title')
         %button.close{ type: "button", "data-dismiss" => "modal", "aria-label" => "Close" }
           %span{ "aria-hidden" => "true" } &times;
       .modal-body
         = simple_form_for checklist do |f|
           = f.input :title
+          = f.input :due_date, as: :string, input_html: { class: 'datepicker' }
           = f.button :submit
       .modal-footer
         %button.btn.btn-secondary{ type: "button", "data-dismiss" => "modal" }= t('button.close')

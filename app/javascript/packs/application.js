@@ -1,4 +1,5 @@
 import "bootstrap";
-import "item_done";
+import "../plugins/flatpickr";
+import 'item_done';
 import "../plugins/tag";
 

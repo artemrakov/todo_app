@@ -2,7 +2,7 @@
   %h1= t('views.checklists.show.title')
   %h2{ id: "checklist-field" }
     = @checklist.title
-    %a{ "data-toggle" => "modal", "data-target" => "#edit-checklist", href: "#" } Edit
+    = render "checklist_edit_modal", checklist: @checklist
     = link_to t('views.checklists.delete.title'),
       checklist_path(@checklist), method: :delete, data: { confirm: 'Are you sure?' }
   %ul
@@ -10,8 +10,8 @@
       %li
         = render 'checkbox_for_item', item: item, checklist: @checklist
         = item.title
+        = render "items/edit_item_modal", item: item, checklist: @checklist
         = link_to t('views.items.delete.title'),
           checklist_item_path(@checklist, item), method: :delete, data: { confirm: 'Are you sure?' }
   = link_to t('views.items.create.title'), new_checklist_item_path(@checklist)
-= render "checklist_modal", checklist: @checklist
 

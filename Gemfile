@@ -21,6 +21,9 @@ gem 'aasm'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'searchkick'
 gem 'draper'
+gem 'clockwork'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
 gem 'omniauth-facebook'
 
 group :development do
@@ -31,6 +34,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'clockwork-test'
 end
 
 group :development, :test do
