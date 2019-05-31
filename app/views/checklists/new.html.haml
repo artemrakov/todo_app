@@ -1,6 +1,5 @@
 .container
   = simple_form_for @checklist_template, url: checklists_path do |t|
-    = t.simple_fields_for @checklist do |c|
-      = c.input :title
+    = t.input :title
     = t.input :visibility, collection: @checklist_template.states, include_blank: false, include_hidden: false
     = t.submit "Create checklist"
