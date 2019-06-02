@@ -6,6 +6,12 @@ class Item < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 100 }
 
+  # find items that will be due next day and have state not_done
+  scope :due_date_tomorrow, lambda {
+    where("due_date BETWEEN ? AND ?", Date.current.in_time_zone, Date.tomorrow.end_of_day.in_time_zone)
+      .where(state: :not_done)
+  }
+
   aasm.attribute_name :state
 
   aasm do

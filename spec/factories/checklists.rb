@@ -7,5 +7,13 @@ FactoryBot.define do
     trait :invalid do
       title { "" }
     end
+
+    trait :due_tomorrow do
+      due_date { Date.tomorrow.in_time_zone }
+    end
+
+    trait :due_today do
+      due_date { Date.today.in_time_zone }
+    end
   end
 end
