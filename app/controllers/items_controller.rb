@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :find_checklist, only: %i[new create]
-  before_action :find_item, only: %i[update destroy]
+  before_action :item, only: %i[update destroy]
 
   def new
     @item = Item.new(checklist: @checklist)
@@ -19,7 +19,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    authorize @item
     if @item.update(item_params)
       redirect_to checklist_path(@item.checklist), notice: t('item.success_update')
     else
@@ -28,7 +27,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    authorize @item
     if @item.destroy
       redirect_to checklist_path(@item.checklist), notice: t('item.success_destroy')
     else
@@ -42,8 +40,9 @@ class ItemsController < ApplicationController
     @checklist = Checklist.find(params[:checklist_id])
   end
 
-  def find_item
+  def item
     @item = Item.find(params[:id])
+    authorize @item
   end
 
   def item_params

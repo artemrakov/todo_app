@@ -3,6 +3,7 @@ en:
   delete_button: 'Delete'
   confirmation: 'Are you sure?'
   search: 'Search'
+  not_authorized: 'You are not authorized to perform this action.'
 
   views:
     pages:
