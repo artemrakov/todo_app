@@ -3,6 +3,7 @@ en:
   delete_button: 'Delete'
   confirmation: 'Are you sure?'
   search: 'Search'
+  not_authorized: 'You are not authorized to perform this action.'
 
   views:
     pages:
@@ -39,7 +40,7 @@ en:
         title: 'All Checklist templates'
       create:
         title: 'Create checklist template'
-        checklist: 'Create checklist from this template'
+        checklist: 'Use'
       delete:
         title: 'Delete'
     template_items:
@@ -76,6 +77,7 @@ en:
     success_update: 'Item successfully updated!'
     fail_update: 'Failed to update'
     success_destroy: 'Item successfully destroyed'
+    fail_destroy: 'Failed to destroy Item'
     success_create: 'Item successfully created!'
     fail_create: "Couldn't create an Item"
 

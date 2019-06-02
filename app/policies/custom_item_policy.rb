@@ -1,0 +1,2 @@
+class CustomItemPolicy < ItemPolicy
+end

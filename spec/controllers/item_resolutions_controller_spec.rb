@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe ItemResolutionsController, type: :controller do
   let(:user) { create(:user) }
-  let(:checklist) { create(:checklist) }
-  let(:item) { create(:item) }
-  let(:item_done) { create(:item, :complete) }
-  let(:custom_item) { create(:item, :custom) }
+  let(:checklist) { create(:checklist, user: user) }
+  let(:item) { create(:item, checklist: checklist) }
+  let(:item_done) { create(:item, :complete, checklist: checklist) }
+  let(:custom_item) { create(:item, :custom, checklist: checklist) }
 
   describe '#create' do
     context 'as an authenticated user' do

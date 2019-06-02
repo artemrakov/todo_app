@@ -1,5 +1,8 @@
 class ChecklistTemplatesController < ApplicationController
-  before_action :find_checklist_template, only: %i[show create_checklist]
+  before_action :checklist_template, only: %i[show]
+  before_action only: %i[new create] do
+    authorize_role(:checklist_template)
+  end
 
   def index
     @checklist_templates = ChecklistTemplate.everyone.paginate(page: params[:page])
@@ -23,12 +26,14 @@ class ChecklistTemplatesController < ApplicationController
 
   def show
     @template_items = @checklist_template.template_items
+    @template_item = TemplateItem.new(checklist_template: @checklist_template)
   end
 
   private
 
-  def find_checklist_template
-    @checklist_template = ChecklistTemplate.find(params[:id]).decorate
+  def checklist_template
+    @checklist_template ||= ChecklistTemplate.find(params[:id]).decorate
+    authorize @checklist_template
   end
 
   def checklist_template_params

@@ -1,9 +1,11 @@
 class TemplateItemsController < ApplicationController
   before_action :find_checklist_template, only: %i[create]
-  before_action :find_template_item, only: %i[update destroy]
+  before_action :template_item, only: %i[update destroy]
 
   def create
     @template_item = @checklist_template.template_items.build(template_item_params)
+    authorize @template_item
+
     if @template_item.save
       redirect_to checklist_template_path(@checklist_template), notice: t('template_item.success_create')
     else
@@ -33,8 +35,9 @@ class TemplateItemsController < ApplicationController
     @checklist_template = ChecklistTemplate.find(params[:checklist_template_id])
   end
 
-  def find_template_item
+  def template_item
     @template_item = TemplateItem.find(params[:id])
+    authorize @template_item
   end
 
   def template_item_params

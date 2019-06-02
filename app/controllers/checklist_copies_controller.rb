@@ -4,11 +4,10 @@ class ChecklistCopiesController < ApplicationController
   before_action :find_checklist_template
 
   def create
-    @checklist_form = ChecklistForm.new(
-      user: current_user,
-      checklist_template: @checklist_template,
-      title: @checklist_template.title
-    )
+    @checklist_form = ChecklistForm.new(user: current_user,
+                                        checklist_template: @checklist_template,
+                                        title: @checklist_template.title)
+    authorize @checklist_form.checklist
     if @checklist_form.save
       redirect_to checklist_path(@checklist_form.checklist)
     else

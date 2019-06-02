@@ -1,5 +1,8 @@
 class ChecklistsController < ApplicationController
-  before_action :find_checklist, only: %i[show update destroy]
+  before_action :checklist, only: %i[show update destroy]
+  before_action only: %i[new] do
+    authorize_role(:checklist)
+  end
 
   def index
     @checklists = current_user.checklists.paginate(page: params[:page])
@@ -15,6 +18,7 @@ class ChecklistsController < ApplicationController
 
   def create
     checklist_form = ChecklistCreationService.new(checklist_template_params, current_user)
+    authorize checklist_form.checklist
     if checklist_form.save
       redirect_to checklist_path(checklist_form.checklist), notice: t('checklist.success_create')
     else
@@ -44,8 +48,9 @@ class ChecklistsController < ApplicationController
     @checklist_template = ChecklistTemplate.find(params[:checklist_template_id])
   end
 
-  def find_checklist
-    @checklist = Checklist.find(params[:id])
+  def checklist
+    @checklist ||= Checklist.find(params[:id])
+    authorize @checklist
   end
 
   def checklist_params

@@ -1,0 +1,2 @@
+class InheritedItemPolicy < ItemPolicy
+end
