@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ChecklistsController, type: :controller do
   let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
   let!(:checklist) { create(:checklist, user: user) }
   let(:checklist_template) { create(:checklist_template) }
 
@@ -83,7 +84,16 @@ RSpec.describe ChecklistsController, type: :controller do
       end
     end
 
-    # TODO: add pundit, create tests for unauthenticated user
+    context 'as an unauthenticated user' do
+      before do
+        sign_in other_user
+      end
+
+      it 'redirects to root page' do
+        get :show, params: { id: checklist.id }
+        expect(response).to redirect_to root_path
+      end
+    end
   end
 
   describe '#update' do
@@ -96,7 +106,17 @@ RSpec.describe ChecklistsController, type: :controller do
       end
     end
 
-    # TODO: add pundit create tests for unauthenticated user
+    context 'as an unauthenticated user' do
+      before do
+        sign_in other_user
+      end
+
+      it 'does not update checklist' do
+        checklist_params = attributes_for(:checklist, title: 'New checklist name')
+        patch :update, params: { id: checklist.id, checklist: checklist_params }
+        expect(checklist.reload.title).to_not eq 'New checklist name'
+      end
+    end
   end
 
   describe '#destroy' do
@@ -109,6 +129,16 @@ RSpec.describe ChecklistsController, type: :controller do
       end
     end
 
-    # TODO: add pundit create tests for unauthenticated user
+    context 'as an unauthenticated user' do
+      before do
+        sign_in other_user
+      end
+
+      it 'does not delete checklist' do
+        expect do
+          delete :destroy, params: { id: checklist.id }
+        end.to_not change(Checklist, :count)
+      end
+    end
   end
 end
