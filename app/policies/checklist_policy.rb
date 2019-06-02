@@ -4,14 +4,20 @@ class ChecklistPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
+    owner?
   end
 
   def show?
-    record.user == user
+    owner?
   end
 
   def destroy?
+    owner?
+  end
+
+  private
+
+  def owner?
     record.user == user
   end
 end
