@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    ports:
+        - 8001:5432
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+  redis:
+    image: redis
+    volumes:
+      - ./tmp/redis:/data
+  elasticsearch:
+      image: elasticsearch:6.8.0
+      volumes:
+        - ./tmp/elasticsearch:/data
+      ports:
+        - 9201:9200
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/app
+    env_file:
+      - '.env'
+    depends_on:
+      - db
+      - redis
+  web:
+    image: todo_app:latest
+    build: .
+    ports:
+        - 3000:3000
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - '.env'
+    depends_on:
+      - db
+      - redis
+      - elasticsearch
+      - webpacker
+  webpacker:
+    build: .
+    env_file:
+      - '.env'
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3035:3035'
+
