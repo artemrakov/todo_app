@@ -29,7 +29,6 @@ services:
       - db
       - redis
   web:
-    image: todo_app:latest
     build: .
     ports:
         - 3000:3000
@@ -45,6 +44,7 @@ services:
       - webpacker
   webpacker:
     build: .
+    hostname: webpacker
     env_file:
       - '.env'
     command: ./bin/webpack-dev-server
