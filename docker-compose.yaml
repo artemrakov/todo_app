@@ -44,10 +44,9 @@ services:
       - webpacker
   webpacker:
     build: .
-    hostname: webpacker
     env_file:
       - '.env'
-    command: ./bin/webpack-dev-server
+    command: bash -c "rm -rf tmp/cache/webpacker/ && bin/webpack-dev-server"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
