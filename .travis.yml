@@ -1,6 +1,5 @@
 services:
   - elasticsearch
-bundler: true
 yarn: true
 directories:
     - ./bin/setup
