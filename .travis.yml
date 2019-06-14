@@ -5,6 +5,7 @@ yarn: true
 directories:
     - ./bin/setup
 before_script:
+  - gem install bundler --version '2.0.1' && bundle install
   - cp config/database.yml.travis config/database.yml
   - bundle exec rake db:create RAILS_ENV=test # database user by default is `travis`
   - bundle exec rake db:migrate RAILS_ENV=test
