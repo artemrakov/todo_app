@@ -13,9 +13,9 @@ describe ChecklistsController, type: :controller do
   end
 end
 
-def benchmark(&block)
-  block.call
+def benchmark
+  yield
   # In real example you might want to run this many times, add mean and variance
-  time = Benchmark.realtime { block.call }
+  time = Benchmark.realtime { yield }
   puts "RUNTIME: #{time}"
 end
