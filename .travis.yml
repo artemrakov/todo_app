@@ -1,9 +1,8 @@
 services:
   - elasticsearch
-cache:
-  bundler: true
-  yarn: true
-  directories:
+bundler: true
+yarn: true
+directories:
     - ./bin/setup
 before_script:
   - cp config/database.yml.travis config/database.yml
