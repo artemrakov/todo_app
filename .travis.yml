@@ -1,10 +1,10 @@
 services:
   - elasticsearch
-cache:
-  bundler: true
-  yarn: true
-  directories:
+yarn: true
+directories:
     - ./bin/setup
+before_install:
+  - gem install bundler --version '2.0.1'
 before_script:
   - cp config/database.yml.travis config/database.yml
   - bundle exec rake db:create RAILS_ENV=test # database user by default is `travis`
