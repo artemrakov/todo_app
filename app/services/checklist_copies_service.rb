@@ -1,26 +1,22 @@
 # creates checklist from checklist template
 # copies template items from checklist template to items from checklist
-class ChecklistForm
+class ChecklistCopiesService
   include ActiveModel::Model
 
-  attr_accessor :title
-  attr_accessor :user
-  attr_accessor :checklist_template
-  attr_accessor :checklist
+  attr_reader :user, :checklist_template, :checklist
 
-  validates :title, presence: true, length: { maximum: 100 }
-
-  def initialize(attributes)
-    super(attributes)
-    @checklist = Checklist.new(title: title, user: user, checklist_template: checklist_template)
+  def initialize(user, checklist_template)
+    @user = user
+    @checklist_template = checklist_template
+    @checklist = Checklist.new(title: checklist_template.title, user: user, checklist_template: checklist_template)
   end
 
-  def save
-    return false unless valid?
-
+  def run
     create_items
     checklist.save!
   end
+
+  private
 
   def create_items
     checklist_template.template_items.each do |template_item|
