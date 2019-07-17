@@ -38,37 +38,46 @@ RSpec.describe ChecklistsController, type: :controller do
   describe '#create' do
     context 'as an authenticated user' do
       context 'with valid attributes' do
+        let(:checklist_form_params) do
+          {
+            title: 'test',
+            visibility: 'everyone'
+          }
+        end
         it 'adds a checklist' do
-          checklist_template_params = attributes_for(:checklist_template)
           sign_in user
           expect do
-            post :create, params: { checklist_template: checklist_template_params }
+            post :create, params: { checklist_form: checklist_form_params }
           end.to change(user.reload.checklists, :count).by(1)
         end
 
         it 'adds a checklist template' do
-          checklist_template_params = attributes_for(:checklist_template)
           sign_in user
           expect do
-            post :create, params: { checklist_template: checklist_template_params }
+            post :create, params: { checklist_form: checklist_form_params }
           end.to change(user.reload.checklist_templates, :count).by(1)
         end
       end
 
       context 'with invalid attributes' do
+        let(:checklist_form_params) do
+          {
+            title: '',
+            visibility: ''
+          }
+        end
+
         it 'does not add a checklist' do
-          checklist_template_params = attributes_for(:checklist_template, :invalid)
           sign_in user
           expect do
-            post :create, params: { checklist_template: checklist_template_params }
+            post :create, params: { checklist_form: checklist_form_params }
           end.to_not change(user.reload.checklists, :count)
         end
 
         it 'does not add a checklist template' do
-          checklist_template_params = attributes_for(:checklist_template, :invalid)
           sign_in user
           expect do
-            post :create, params: { checklist_template: checklist_template_params }
+            post :create, params: { checklist_form: checklist_form_params }
           end.to_not change(user.reload.checklist_templates, :count)
         end
       end
