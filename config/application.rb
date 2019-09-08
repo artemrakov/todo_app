@@ -4,6 +4,9 @@ require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
+require_relative '../app/middlewares/request_time_logging'
+require_relative '../app/middlewares/restriction'
+
 Bundler.require(*Rails.groups)
 
 module TodoApp
@@ -16,6 +19,9 @@ module TodoApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.active_job.queue_adapter = :sidekiq
+
+    config.middleware.use Restriction
+    config.middleware.use RequestTimeLogging
 
 
     # Settings in config/environments/* take precedence over those specified here.

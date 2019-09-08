@@ -26,6 +26,7 @@ gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'omniauth-facebook'
 gem 'pundit'
+gem 'splunk_logger'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
