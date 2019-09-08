@@ -8,7 +8,6 @@ class Restriction
     allowed?(request) ? @app.call(env) : [403, {}, ['Hello']]
   end
 
-
   def allowed?(request)
     request.path != '/not_allowed'
   end

@@ -5,13 +5,13 @@ class RequestTimeLogging
 
   def call(env)
     start = Time.now
-    start, headers, response = @app.call(env)
+    status, headers, response = @app.call(env)
     elapsed = Time.now - start
     request = Rack::Request.new(env)
 
     log_response_time(elapsed, request)
 
-    [start, headers, response]
+    [status, headers, response]
   end
 
   private
