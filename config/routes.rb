@@ -8,12 +8,15 @@ Rails.application.routes.draw do
   end
 
   resources :checklists do
+    resources :show, only: [:index]
+
     resources :items, only: %i[new create update destroy] do
       resource :item_resolutions, only: [:create, :destroy]
     end
   end
 
   resources :checklist_templates do
+    resources :show, only: [:index]
     resources :template_items, only: %i[create update destroy]
     resource :checklist_copy, only: %i[create]
   end
@@ -21,4 +24,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :checklist_templates, module: 'users', only: %i[index show]
   end
+
 end

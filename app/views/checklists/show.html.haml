@@ -14,4 +14,5 @@
         = link_to t('views.items.delete.title'),
           checklist_item_path(@checklist, item), method: :delete, data: { confirm: 'Are you sure?' }
   = link_to t('views.items.create.title'), new_checklist_item_path(@checklist)
+  = link_to 'Show', checklist_show_index_path(@checklist)
 

@@ -15,4 +15,7 @@
     = link_to t('views.checklist_templates.create.checklist'),
       checklist_template_checklist_copy_path(@checklist_template), method: :post
 
+  %p
+    = link_to 'Show', checklist_template_show_index_path(@checklist_template)
+
 
