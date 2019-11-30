@@ -1,4 +1,5 @@
 services:
+  - postgresql
   - elasticsearch
 yarn: true
 directories:
