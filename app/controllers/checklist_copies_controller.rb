@@ -1,18 +1,12 @@
 # coping checklist template and template items
 # and creating checklist with same items
 class ChecklistCopiesController < ApplicationController
-  before_action :find_checklist_template
-
   def create
-    @checklist_form = ChecklistForm.new(user: current_user,
-                                        checklist_template: @checklist_template,
-                                        title: @checklist_template.title)
-    authorize @checklist_form.checklist
-    if @checklist_form.save
-      redirect_to checklist_path(@checklist_form.checklist)
-    else
-      redirect_to checklist_templates_path(@checklist_template)
-    end
+    @checklist_template = find_checklist_template
+    authorize @checklist_template
+    service = ChecklistCopiesService.new(current_user, @checklist_template)
+    service.run
+    redirect_to checklist_path(service.checklist)
   end
 
   private

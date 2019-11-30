@@ -1,5 +1,5 @@
 .container
-  = simple_form_for @checklist_template, url: checklists_path do |t|
+  = simple_form_for @checklist_form, url: checklists_path do |t|
     = t.input :title
-    = t.input :visibility, collection: @checklist_template.states, include_blank: false, include_hidden: false
+    = t.input :visibility, collection: @checklist_form.states, include_blank: false, include_hidden: false
     = t.submit "Create checklist"

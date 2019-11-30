@@ -12,15 +12,16 @@ class ChecklistsController < ApplicationController
   end
 
   def new
-    @checklist_template = ChecklistTemplate.new.decorate
-    @checklist = Checklist.new
+    @checklist_form = ChecklistForm.new
   end
 
   def create
-    checklist_form = ChecklistCreationService.new(checklist_template_params, current_user)
-    authorize checklist_form.checklist
-    if checklist_form.save
-      redirect_to checklist_path(checklist_form.checklist), notice: t('checklist.success_create')
+    @checklist_form = ChecklistForm.new(checklist_form_params)
+    authorize Checklist.new
+    if @checklist_form.valid?
+      service = ChecklistCreationService.new(checklist_form_params, current_user)
+      service.run
+      redirect_to checklist_path(service.checklist), notice: t('checklist.success_create')
     else
       redirect_to new_checklist_path, notice: t('checklist.fail_create')
     end
@@ -57,7 +58,7 @@ class ChecklistsController < ApplicationController
     params.require(:checklist).permit(:title, :due_date)
   end
 
-  def checklist_template_params
-    params.require(:checklist_template).permit(:title, :visibility)
+  def checklist_form_params
+    params.require(:checklist_form).permit(:title, :visibility)
   end
 end
