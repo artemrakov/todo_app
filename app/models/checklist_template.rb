@@ -4,8 +4,8 @@
 class ChecklistTemplate < ApplicationRecord
   include AASM
 
-  has_many :checklists
-  has_many :template_items
+  has_many :checklists, dependent: :destroy
+  has_many :template_items, dependent: :destroy
   belongs_to :user
   accepts_nested_attributes_for :checklists
 

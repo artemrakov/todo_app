@@ -1,48 +1,42 @@
 class PolymorphicFinder
-  def initialize(finder)
-    @finder = finder
+  def initialize
+    @finders = []
   end
 
   def self.finding(*args)
-    new(NullFinder.new).finding(*args)
+    new.finding(*args)
   end
 
   def finding(relation, attribute, params_names)
-    # it creates Finder with @fallback and changes fallback = to new finder
-    # then creates new finder with that fallback
-    new_finder = params_names.inject(@finder) do |fallback, param_name|
-      Finder.new(relation, attribute, param_name, fallback)
+    params_names.each do |param_name|
+      @finders << Finder.new(relation, attribute, param_name)
     end
 
-    self.class.new(new_finder)
+    self
   end
 
   def find(params)
-    @finder.find(params)
+    element = @finders.reduce(nil) do |result, finder|
+      result || finder.find(params)
+    end
+
+    raise ActiveRecord::RecordNotFound unless element
+    element
   end
 
   class Finder
-    def initialize(relation, attribute, params_name, fallback)
+    def initialize(relation, attribute, params_name)
       @relation = relation
       @attribute = attribute
       @params_name = params_name
-      @fallback = fallback
     end
 
     def find(params)
-      if params[@params_name]
-        @relation.where(@attribute => params[@params_name]).first!
-      else
-        @fallback.find(params)
-      end
+      return nil unless params[@params_name]
+
+      @relation.where(@attribute => params[@params_name]).first!
     end
   end
 
-  class NullFinder
-    def find
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
-  private_constant :Finder, :NullFinder
+  private_constant :Finder
 end
