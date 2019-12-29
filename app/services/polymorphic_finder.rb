@@ -16,9 +16,8 @@ class PolymorphicFinder
   end
 
   def find(params)
-    element = @finders.reduce(nil) do |result, finder|
-      result || finder.find(params)
-    end
+    finder = @finders.find { |f| f.exist?(params) }
+    element = finder.find(params)
 
     raise ActiveRecord::RecordNotFound unless element
     element
@@ -35,6 +34,10 @@ class PolymorphicFinder
       return nil unless params[@params_name]
 
       @relation.where(@attribute => params[@params_name]).first!
+    end
+
+    def exist?(params)
+      params.key?(@params_name)
     end
   end
 
